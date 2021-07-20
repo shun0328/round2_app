@@ -1,3 +1,13 @@
+# データベース
+
+|  Column  | Type | Option |
+| ---- | ---- | ---- |
+|ID    |int   |      |
+|Name  |String|      |
+|rating|int   |      |
+|visit |int   |      |
+|point |int   |      |
+
 # flutter_app
 
 A new Flutter project.
