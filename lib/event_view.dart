@@ -4,10 +4,16 @@ class EventView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: const Text('イベント情報',
+          style: TextStyle(color: Colors.black45),),
+          backgroundColor: Colors.white,
+        ),
+
         body: Center(
           child: Container(
             height: double.infinity,
-            color: Colors.amberAccent,
+            color: Colors.lightBlueAccent,
           ),
         )
 

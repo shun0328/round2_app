@@ -42,9 +42,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Round2'),
-      ),
 
       body: _pageList[_selectedIndex],
 
@@ -54,19 +51,19 @@ class _HomePageState extends State<HomePage> {
 
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('Home'),
+            label: 'イベント',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle_rounded),
-            title: Text('Setting'),
+            label: 'プロフィール',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.access_time),
-            title: Text('Search'),
+            label: 'タイムライン',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            title: Text('Search'),
+            label: '設定',
           ),
         ],
 
