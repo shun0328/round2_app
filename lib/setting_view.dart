@@ -6,7 +6,7 @@ class SettingView extends StatelessWidget{
     return Scaffold(
         appBar: AppBar(
           title: const Text('設定',
-            style: TextStyle(color: Colors.black45),),
+            style: TextStyle(color: Colors.black),),
           backgroundColor: Colors.white,
         ),
 

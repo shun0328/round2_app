@@ -6,7 +6,7 @@ class ProfileView extends StatelessWidget{
     return Scaffold(
         appBar: AppBar(
           title: const Text('プロフィール',
-            style: TextStyle(color: Colors.black45),),
+            style: TextStyle(color: Colors.black),),
           backgroundColor: Colors.white,
         ),
 

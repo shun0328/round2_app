@@ -6,7 +6,7 @@ class EventView extends StatelessWidget{
     return Scaffold(
         appBar: AppBar(
           title: const Text('イベント情報',
-          style: TextStyle(color: Colors.black45),),
+          style: TextStyle(color: Colors.black),),
           backgroundColor: Colors.white,
         ),
 

@@ -6,7 +6,7 @@ class TimeLineView extends StatelessWidget{
     return Scaffold(
         appBar: AppBar(
           title: const Text('タイムライン',
-            style: TextStyle(color: Colors.black45),),
+            style: TextStyle(color: Colors.black),),
           backgroundColor: Colors.white,
         ),
 
