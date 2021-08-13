@@ -4,6 +4,8 @@ class TimeLineView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.lightBlueAccent,
+
         appBar: AppBar(
           title: const Text('タイムライン',
             style: TextStyle(color: Colors.black),),
@@ -11,10 +13,6 @@ class TimeLineView extends StatelessWidget{
         ),
 
         body: Center(
-          child: Container(
-            height: double.infinity,
-            color: Colors.lightBlueAccent,
-          ),
         )
 
     );

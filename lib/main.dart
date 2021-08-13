@@ -42,6 +42,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.lightBlueAccent,
 
       body: _pageList[_selectedIndex],
 
@@ -50,19 +51,19 @@ class _HomePageState extends State<HomePage> {
         items: const <BottomNavigationBarItem>[
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home,size: 35.0),
             label: 'イベント',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle_rounded),
+            icon: Icon(Icons.account_circle_rounded,size: 35.0),
             label: 'プロフィール',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.access_time),
+            icon: Icon(Icons.access_time,size: 35.0),
             label: 'タイムライン',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
+            icon: Icon(Icons.settings,size: 35.0),
             label: '設定',
           ),
         ],

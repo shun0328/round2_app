@@ -4,6 +4,8 @@ class SettingView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.lightBlueAccent,
+
         appBar: AppBar(
           title: const Text('設定',
             style: TextStyle(color: Colors.black),),
@@ -11,10 +13,7 @@ class SettingView extends StatelessWidget{
         ),
 
         body: Center(
-          child: Container(
-            height: double.infinity,
-            color: Colors.lightBlueAccent,
-          ),
+
         )
 
     );
