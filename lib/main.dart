@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlueAccent,
+      //backgroundColor: Colors.lightBlueAccent,
 
       body: _pageList[_selectedIndex],
 

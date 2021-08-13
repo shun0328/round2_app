@@ -4,7 +4,7 @@ class EventView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: Colors.black54,
 
         appBar: AppBar(
           title: const Text('イベント情報',
@@ -26,7 +26,7 @@ class EventView extends StatelessWidget{
                   style: ElevatedButton.styleFrom(
                     textStyle: TextStyle(fontSize: 20),
                     primary: Colors.white,
-                    onPrimary: Colors.lightBlueAccent,
+                    onPrimary: Colors.black,
                   ),
                   onPressed: () {},
                 ),
@@ -44,7 +44,7 @@ class EventView extends StatelessWidget{
                   style: ElevatedButton.styleFrom(
                     textStyle: TextStyle(fontSize: 20),
                     primary: Colors.white,
-                    onPrimary: Colors.lightBlueAccent,
+                    onPrimary: Colors.black,
                   ),
                   onPressed: () {},
                 ),
@@ -62,7 +62,7 @@ class EventView extends StatelessWidget{
                         width: 100,
                         height: 100,
                         decoration: BoxDecoration(
-                          color: Colors.lightBlueAccent,
+                          //color: Colors.black54,
                           borderRadius: BorderRadius.circular(8.0),
                           image: DecorationImage(
                             image: AssetImage(
@@ -89,7 +89,7 @@ class EventView extends StatelessWidget{
                         width: 100,
                         height: 100,
                         decoration: BoxDecoration(
-                          color: Colors.lightBlueAccent,
+                          //color: Colors.lightBlueAccent,
                           borderRadius: BorderRadius.circular(8.0),
                           image: DecorationImage(
                             image: AssetImage(
@@ -116,7 +116,7 @@ class EventView extends StatelessWidget{
                       width: 100,
                       height: 100,
                       decoration: BoxDecoration(
-                        color: Colors.lightBlueAccent,
+                        //color: Colors.lightBlueAccent,
                         borderRadius: BorderRadius.circular(8.0),
                         image: DecorationImage(
                           image: AssetImage(
