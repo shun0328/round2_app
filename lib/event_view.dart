@@ -42,7 +42,7 @@ class EventView extends StatelessWidget{
                 width: size.width * 0.8,
                 height: size.width * 0.15,
                 child: ElevatedButton(
-                  child: const Text('リングゲームの開催状況'),
+                  child: const Text('リングゲーム'),
                   style: ElevatedButton.styleFrom(
                     textStyle: TextStyle(fontSize: 20),
                     primary: Colors.white,
