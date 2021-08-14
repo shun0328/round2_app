@@ -102,7 +102,7 @@ class ProfileView extends StatelessWidget{
               // IDの配置
               Positioned(
                   left: size.width * 0.1,
-                  top: size.height * 0.36,
+                  bottom: size.height * 0.38,
                   child: Text(
                     'ID',
                     style: TextStyle(
@@ -114,7 +114,7 @@ class ProfileView extends StatelessWidget{
               ),
               Positioned(
                   left: size.width * 0.47,
-                  top: size.height * 0.36,
+                  bottom: size.height * 0.38,
                   child: Text(
                     id,
                     style: TextStyle(
@@ -128,7 +128,7 @@ class ProfileView extends StatelessWidget{
               // 名前の配置
               Positioned(
                   left: size.width * 0.1,
-                  top: size.height * 0.42,
+                  bottom: size.height * 0.317,
                   child: Text(
                     '名前',
                     style: TextStyle(
@@ -140,7 +140,7 @@ class ProfileView extends StatelessWidget{
               ),
               Positioned(
                   left: size.width * 0.47,
-                  top: size.height * 0.42,
+                  bottom: size.height * 0.317,
                   child: Text(
                     name,
                     style: TextStyle(
@@ -154,7 +154,7 @@ class ProfileView extends StatelessWidget{
               // 来店回数の配置
               Positioned(
                   left: size.width * 0.1,
-                  top: size.height * 0.48,
+                  bottom: size.height * 0.255,
                   child: Text(
                     '来店回数',
                     style: TextStyle(
@@ -166,7 +166,7 @@ class ProfileView extends StatelessWidget{
               ),
               Positioned(
                   left: size.width * 0.47,
-                  top: size.height * 0.48,
+                  bottom: size.height * 0.255,
                   child: Text(
                     visit_time.toString() +' 回',
                     style: TextStyle(
@@ -180,7 +180,7 @@ class ProfileView extends StatelessWidget{
               // ポイントの配置
               Positioned(
                   left: size.width * 0.1,
-                  top: size.height * 0.54,
+                  bottom: size.height * 0.193,
                   child: Text(
                     'ポイント',
                     style: TextStyle(
@@ -192,7 +192,7 @@ class ProfileView extends StatelessWidget{
               ),
               Positioned(
                   left: size.width * 0.47,
-                  top: size.height * 0.54,
+                  bottom: size.height * 0.193,
                   child: Text(
                     point.toString() +' points',
                     style: TextStyle(
@@ -206,7 +206,7 @@ class ProfileView extends StatelessWidget{
               // チップの配置
               Positioned(
                   left: size.width * 0.1,
-                  top: size.height * 0.60,
+                  bottom: size.height * 0.13,
                   child: Text(
                     'チップ',
                     style: TextStyle(
@@ -218,7 +218,7 @@ class ProfileView extends StatelessWidget{
               ),
               Positioned(
                   left: size.width * 0.47,
-                  top: size.height * 0.60,
+                  bottom: size.height * 0.13,
                   child: Text(
                     chip.toString(),
                     style: TextStyle(
