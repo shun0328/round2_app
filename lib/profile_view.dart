@@ -9,6 +9,8 @@ class ProfileView extends StatelessWidget{
     final Color topColor = Colors.white;
     // カード以外の文字の色
     final Color bottomColor = Colors.white;
+    // カード以外の文字の大きさ
+    final double bottomFontSize = 20.0;
 
     // ID
     final String id = 'asdfghjkl';
@@ -101,25 +103,25 @@ class ProfileView extends StatelessWidget{
 
               // IDの配置
               Positioned(
-                  left: size.width * 0.1,
+                  left: size.width * 0.2,
                   bottom: size.height * 0.38,
                   child: Text(
                     'ID',
                     style: TextStyle(
                       //fontWeight: FontWeight.bold,
-                      fontSize: 27,
+                      fontSize: bottomFontSize,
                       color: bottomColor,
                     ),
                   )
               ),
               Positioned(
-                  left: size.width * 0.47,
+                  left: size.width * 0.57,
                   bottom: size.height * 0.38,
                   child: Text(
                     id,
                     style: TextStyle(
                       //fontWeight: FontWeight.bold,
-                      fontSize: 27,
+                      fontSize: bottomFontSize,
                       color: bottomColor,
                     ),
                   )
@@ -127,25 +129,25 @@ class ProfileView extends StatelessWidget{
 
               // 名前の配置
               Positioned(
-                  left: size.width * 0.1,
+                  left: size.width * 0.2,
                   bottom: size.height * 0.317,
                   child: Text(
                     '名前',
                     style: TextStyle(
                       //fontWeight: FontWeight.bold,
-                      fontSize: 27,
+                      fontSize: bottomFontSize,
                       color: bottomColor,
                     ),
                   )
               ),
               Positioned(
-                  left: size.width * 0.47,
+                  left: size.width * 0.57,
                   bottom: size.height * 0.317,
                   child: Text(
                     name,
                     style: TextStyle(
                       //fontWeight: FontWeight.bold,
-                      fontSize: 27,
+                      fontSize: bottomFontSize,
                       color: bottomColor,
                     ),
                   )
@@ -153,25 +155,25 @@ class ProfileView extends StatelessWidget{
 
               // 来店回数の配置
               Positioned(
-                  left: size.width * 0.1,
+                  left: size.width * 0.2,
                   bottom: size.height * 0.255,
                   child: Text(
                     '来店回数',
                     style: TextStyle(
                       //fontWeight: FontWeight.bold,
-                      fontSize: 27,
+                      fontSize: bottomFontSize,
                       color: bottomColor,
                     ),
                   )
               ),
               Positioned(
-                  left: size.width * 0.47,
+                  left: size.width * 0.57,
                   bottom: size.height * 0.255,
                   child: Text(
                     visit_time.toString() +' 回',
                     style: TextStyle(
                       //fontWeight: FontWeight.bold,
-                      fontSize: 27,
+                      fontSize: bottomFontSize,
                       color: bottomColor,
                     ),
                   )
@@ -179,25 +181,25 @@ class ProfileView extends StatelessWidget{
 
               // ポイントの配置
               Positioned(
-                  left: size.width * 0.1,
+                  left: size.width * 0.2,
                   bottom: size.height * 0.193,
                   child: Text(
                     'ポイント',
                     style: TextStyle(
                       //fontWeight: FontWeight.bold,
-                      fontSize: 27,
+                      fontSize: bottomFontSize,
                       color: bottomColor,
                     ),
                   )
               ),
               Positioned(
-                  left: size.width * 0.47,
+                  left: size.width * 0.57,
                   bottom: size.height * 0.193,
                   child: Text(
                     point.toString() +' points',
                     style: TextStyle(
                       //fontWeight: FontWeight.bold,
-                      fontSize: 27,
+                      fontSize: bottomFontSize,
                       color: bottomColor,
                     ),
                   )
@@ -205,25 +207,25 @@ class ProfileView extends StatelessWidget{
 
               // チップの配置
               Positioned(
-                  left: size.width * 0.1,
+                  left: size.width * 0.2,
                   bottom: size.height * 0.13,
                   child: Text(
                     'チップ',
                     style: TextStyle(
                       //fontWeight: FontWeight.bold,
-                      fontSize: 27,
+                      fontSize: bottomFontSize,
                       color: bottomColor,
                     ),
                   )
               ),
               Positioned(
-                  left: size.width * 0.47,
+                  left: size.width * 0.57,
                   bottom: size.height * 0.13,
                   child: Text(
                     chip.toString(),
                     style: TextStyle(
                       //fontWeight: FontWeight.bold,
-                      fontSize: 27,
+                      fontSize: bottomFontSize,
                       color: bottomColor,
                     ),
                   )
