@@ -22,7 +22,7 @@ class EventView extends StatelessWidget{
               // トーナメントボタンの配置
               Positioned(
                   left: size.width * 0.1,
-                  top: size.height * 0.1,
+                  top: size.height * 0.2,
                   width: size.width * 0.8,
                   height: size.width * 0.15,
                   child: ElevatedButton(
@@ -46,7 +46,7 @@ class EventView extends StatelessWidget{
               // リングゲームボタンの配置
               Positioned(
                 left: size.width * 0.1,
-                top: size.height * 0.22,
+                top: size.height * 0.32,
                 width: size.width * 0.8,
                 height: size.width * 0.15,
                 child: ElevatedButton(
@@ -70,9 +70,9 @@ class EventView extends StatelessWidget{
               // インスタグラムボタンの配置
               Positioned(
                 left: size.width * 0.1,
-                top: size.height * 0.4,
+                top: size.height * 0.44,
                 width: size.width * 0.2,
-                height: size.width * 0.2,
+                height: size.width * 0.22,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
@@ -98,7 +98,7 @@ class EventView extends StatelessWidget{
 
               // ツイッターボタンの配置
               Positioned(
-                top: size.height * 0.4,
+                top: size.height * 0.44,
                 left: size.width * 0.5 - size.width * 0.1,
                 width: size.width * 0.2,
                 height: size.width * 0.2,
@@ -127,7 +127,7 @@ class EventView extends StatelessWidget{
 
               // ラインボタンの配置
               Positioned(
-                top: size.height * 0.4,
+                top: size.height * 0.44,
                 right: size.width * 0.1,
                 width: size.width * 0.2,
                 height: size.width * 0.2,
