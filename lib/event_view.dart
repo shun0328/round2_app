@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/ringgame_view.dart';
 import 'package:flutter_app/tournament_view.dart';
 
 class EventView extends StatelessWidget{
@@ -55,7 +56,13 @@ class EventView extends StatelessWidget{
                     primary: Colors.white,
                     onPrimary: Colors.black,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(
+                          builder: (context) => RingGameView(),
+                        )
+                    );
+                  },
                 ),
               ),
 
@@ -145,8 +152,6 @@ class EventView extends StatelessWidget{
                   ),
                 ),
               )
-
-
 
             ]
         )
