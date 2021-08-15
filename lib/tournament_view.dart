@@ -28,7 +28,6 @@ class TournamentView extends StatelessWidget{
         iconTheme: IconThemeData(color: Colors.black),
       ),
 
-
       body:SingleChildScrollView(
           child: Column(
               children: <Widget>[
@@ -223,18 +222,10 @@ class TournamentView extends StatelessWidget{
                     ]
                 ),
 
-
-
-
-
               ]
           )
 
       )
-
-
-
-
 
     );
   }
