@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/tournament_view.dart';
 
 class EventView extends StatelessWidget{
   @override
@@ -7,7 +8,7 @@ class EventView extends StatelessWidget{
     final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-        backgroundColor: Colors.black54,
+        backgroundColor: Colors.blueGrey,
 
         appBar: AppBar(
           title: const Text('イベント情報',
@@ -30,7 +31,13 @@ class EventView extends StatelessWidget{
                       primary: Colors.white,
                       onPrimary: Colors.black,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(
+                              builder: (context) => TournamentView(),
+                          )
+                      );
+                    },
                   ),
               ),
 

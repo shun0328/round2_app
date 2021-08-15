@@ -6,7 +6,7 @@ class SettingView extends StatelessWidget{
     final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-        backgroundColor: Colors.black54,
+        backgroundColor: Colors.blueGrey,
 
         appBar: AppBar(
           title: const Text('設定',
