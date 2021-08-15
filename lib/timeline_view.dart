@@ -21,7 +21,7 @@ class TimeLineView extends StatelessWidget{
     final String text03 = '　勝ち負けの数にはあまり意味が無く、勝ったときのチップを大きくし、負けたときの損失を最小にするための総合的な戦術がより重要である。';
 
     return Scaffold(
-        backgroundColor: Colors.black54,
+        backgroundColor: Colors.blueGrey,
 
         appBar: AppBar(
           title: const Text('タイムライン',
