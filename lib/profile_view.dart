@@ -11,7 +11,7 @@ class ProfileView extends StatelessWidget{
     // カード以外の文字の色
     final Color bottomColor = Colors.white;
     // カード以外の文字の大きさ
-    final double bottomFontSize = size.height * 0.022;
+    final double bottomFontSize = size.height * 0.024;
 
     // ID
     final String id = 'asdfghjkl';
@@ -40,9 +40,9 @@ class ProfileView extends StatelessWidget{
 
             // カードの配置
             Positioned(
-                left: size.width * 0.1,
+                left: (size.width*0.5)-(size.height*0.24*0.83),
                 top: size.height * 0.09,
-                width: size.width * 0.8,
+                //width: (size.width*0.5)-(size.height*0.24*0.83),
                 height: size.height*0.24,
                 child: FittedBox(
                   child: Image.asset('images/bronze.png'),
@@ -52,7 +52,7 @@ class ProfileView extends StatelessWidget{
 
             // IDの配置（カード内）
             Positioned(
-                left: size.width * 0.15,
+                left: size.width * 0.15 + (size.width*0.40-size.height*0.1992),
                 top: size.height * 0.105,
                 child: Text(
                   'ID：'+ id,
@@ -65,7 +65,7 @@ class ProfileView extends StatelessWidget{
 
             // 名前の配置（カード内）
             Positioned(
-                left: size.width * 0.15,
+                left: size.width * 0.15+ (size.width*0.40-size.height*0.1992),
                 top: size.height * 0.17,
                 child: Text(name,
                   style: TextStyle(
@@ -78,7 +78,7 @@ class ProfileView extends StatelessWidget{
 
             // レートの配置（カード内）
             Positioned(
-                left: size.width * 0.15,
+                left: size.width * 0.15+ (size.width*0.40-size.height*0.1992),
                 top: size.height * 0.27,
                 child: Text(
                   rating.toString()+ ' rt',
@@ -91,7 +91,7 @@ class ProfileView extends StatelessWidget{
 
             // プロフィール画像の配置（カード内）
             Positioned(
-              right: size.width * 0.15,
+              right: size.width * 0.15+ (size.width*0.40-size.height*0.1992),
               top: size.height * 0.11,
               child: Container(
                 width: size.width * 0.18,
@@ -108,14 +108,56 @@ class ProfileView extends StatelessWidget{
 
             // プロフィール詳細
             Positioned(
-                left: size.width * 0.54,
+                right: (size.width*0.5)-(size.height*0.24*0.83),
                 top: size.height * 0.32,
                 child: TextButton(
                   child: const Text('rtやポイントについて'),
                   style: TextButton.styleFrom(
+                    textStyle: const TextStyle(fontSize: 10),
                     primary: Colors.white,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet(
+                      //モーダルの背景の色、透過
+                        backgroundColor: Colors.transparent,
+                        //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
+                        isScrollControlled: true,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Container(
+                              margin: EdgeInsets.only(top: 64),
+                              decoration: BoxDecoration(
+                                //モーダル自体の色
+                                color: Colors.white,
+                                //角丸にする
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20),
+                                ),
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.fromLTRB(40, 40, 40, 40),
+                                height: size.height*0.9,
+                                child: Text('レートの上がり方 \n'
+                                    '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n'
+                                    '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n'
+                                    '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n\n\n'
+                                    'ポイントの使い方 \n'
+                                    '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n'
+                                    '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n'
+                                    '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n\n\n'
+                                    'ポイントの使い方 \n'
+                                    '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n'
+                                    '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n'
+                                    '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n\n\n'
+                                    'ポイントの使い方 \n'
+                                    '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n'
+                                    '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n'
+                                    '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n\n\n'
+                                ),
+                              ));
+                        });
+                  },
                 ),
             ),
 
