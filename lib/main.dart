@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/profile_view.dart';
 import 'package:flutter_app/setting_view.dart';
-import 'timeline_view.dart';
+
 import 'event_view.dart';
+import 'timeline_view.dart';
 
 void main() => runApp(MyApp());
 
@@ -47,27 +48,24 @@ class _HomePageState extends State<HomePage> {
       body: _pageList[_selectedIndex],
 
       bottomNavigationBar: BottomNavigationBar(
-
         items: const <BottomNavigationBarItem>[
-
           BottomNavigationBarItem(
-            icon: Icon(Icons.home,size: 35.0),
+            icon: Icon(Icons.home, size: 35.0),
             label: 'イベント',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle_rounded,size: 35.0),
+            icon: Icon(Icons.account_circle_rounded, size: 35.0),
             label: 'プロフィール',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.access_time,size: 35.0),
+            icon: Icon(Icons.access_time, size: 35.0),
             label: 'タイムライン',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings,size: 35.0),
+            icon: Icon(Icons.settings, size: 35.0),
             label: '設定',
           ),
         ],
-
         currentIndex: _selectedIndex,
         fixedColor: Colors.blueAccent,
         onTap: _onItemTapped,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class ProfileModel extends ChangeNotifier {
-
   // ID
   final String id = 'sample123';
   // 名前
@@ -15,8 +14,26 @@ class ProfileModel extends ChangeNotifier {
   // チップ
   final chip = 1000;
 
+  // プロフィール説明文
+  final String sentence = 'レートの上がり方 \n'
+      '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n'
+      '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n'
+      '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n\n\n'
+      'ポイントの使い方 \n'
+      '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n'
+      '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n'
+      '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n\n\n'
+      'ポイントの使い方 \n'
+      '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n'
+      '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n'
+      '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n\n\n'
+      'ポイントの使い方 \n'
+      '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n'
+      '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n'
+      '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n\n\n';
+
   // メソッド
-  void sampleMethod(){
+  void sampleMethod() {
     notifyListeners();
   }
 }

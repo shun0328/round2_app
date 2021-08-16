@@ -5,7 +5,7 @@ class EventModel extends ChangeNotifier {
   String sample = "sample";
 
   // メソッド
-  void sampleMethod(){
+  void sampleMethod() {
     notifyListeners();
   }
 }
