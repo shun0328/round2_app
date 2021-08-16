@@ -8,20 +8,6 @@ class TournamentView extends StatelessWidget {
     // 画面のサイズを取得
     final Size size = MediaQuery.of(context).size;
 
-    // テキスト03
-    final String text03 =
-        '　勝ち負けの数にはあまり意味が無く、勝ったときのチップを大きくし、負けたときの損失を最小にするための総合的な戦術がより重要である。';
-
-    final tournament_name = 'JOPT サテライト';
-    final date = '2021/10/15';
-    final time = '17:00~20:00';
-    final buy_in = 3000;
-    final re_buy = 2000;
-    final stack = 1000;
-    final in_money = 2;
-    final structure = "https://round2.poker.jp";
-    final num_member = 12;
-
     return ChangeNotifierProvider<TournamentModel>(
       create: (_) => TournamentModel(),
       child: Scaffold(
@@ -47,7 +33,7 @@ class TournamentView extends StatelessWidget {
                           color: Colors.white,
                           margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                           padding: EdgeInsets.fromLTRB(40, 10, 0, 14),
-                          child: Text(tournament_name)),
+                          child: Text(model.tournament_name)),
                       Container(
                         width: size.width,
                         color: Colors.white,
@@ -65,43 +51,43 @@ class TournamentView extends StatelessWidget {
                             TableRow(
                               children: [
                                 Text("日付"),
-                                Text(date),
+                                Text(model.date),
                               ],
                             ),
                             TableRow(
                               children: [
                                 Text("エントリー"),
-                                Text(time),
+                                Text(model.time),
                               ],
                             ),
                             TableRow(
                               children: [
                                 Text("バイイン"),
-                                Text(buy_in.toString()),
+                                Text(model.buy_in.toString()),
                               ],
                             ),
                             TableRow(
                               children: [
                                 Text("リバイ"),
-                                Text(re_buy.toString()),
+                                Text(model.re_buy.toString()),
                               ],
                             ),
                             TableRow(
                               children: [
                                 Text("初期スタック"),
-                                Text(stack.toString()),
+                                Text(model.stack.toString()),
                               ],
                             ),
                             TableRow(
                               children: [
                                 Text("インマネ人数"),
-                                Text(in_money.toString()),
+                                Text(model.in_money.toString()),
                               ],
                             ),
                             TableRow(
                               children: [
                                 Text("ストラクチャー"),
-                                Text(structure),
+                                Text(model.structure),
                               ],
                             ),
                           ],
@@ -126,7 +112,7 @@ class TournamentView extends StatelessWidget {
                             SizedBox(width: 100),
                             Icon(Icons.account_circle, size: 30.0),
                             Text(' 現在：'),
-                            Text(num_member.toString()),
+                            Text(model.num_member.toString()),
                             Text(' 人'),
                           ],
                         ),
@@ -142,7 +128,7 @@ class TournamentView extends StatelessWidget {
                         color: Colors.white,
                         margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                         padding: EdgeInsets.fromLTRB(40, 10, 0, 14),
-                        child: Text(tournament_name),
+                        child: Text(model.tournament_name),
                       ),
                       Container(
                         width: size.width,
@@ -161,43 +147,43 @@ class TournamentView extends StatelessWidget {
                             TableRow(
                               children: [
                                 Text("日付"),
-                                Text(date),
+                                Text(model.date),
                               ],
                             ),
                             TableRow(
                               children: [
                                 Text("エントリー"),
-                                Text(time),
+                                Text(model.time),
                               ],
                             ),
                             TableRow(
                               children: [
                                 Text("バイイン"),
-                                Text(buy_in.toString()),
+                                Text(model.buy_in.toString()),
                               ],
                             ),
                             TableRow(
                               children: [
                                 Text("リバイ"),
-                                Text(re_buy.toString()),
+                                Text(model.re_buy.toString()),
                               ],
                             ),
                             TableRow(
                               children: [
                                 Text("初期スタック"),
-                                Text(stack.toString()),
+                                Text(model.stack.toString()),
                               ],
                             ),
                             TableRow(
                               children: [
                                 Text("インマネ人数"),
-                                Text(in_money.toString()),
+                                Text(model.in_money.toString()),
                               ],
                             ),
                             TableRow(
                               children: [
                                 Text("ストラクチャー"),
-                                Text(structure),
+                                Text(model.structure),
                               ],
                             ),
                           ],
@@ -222,7 +208,7 @@ class TournamentView extends StatelessWidget {
                             SizedBox(width: 100),
                             Icon(Icons.account_circle, size: 30.0),
                             Text(' 現在：'),
-                            Text(num_member.toString()),
+                            Text(model.num_member.toString()),
                             Text(' 人'),
                           ],
                         ),

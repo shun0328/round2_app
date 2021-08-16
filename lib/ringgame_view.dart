@@ -8,14 +8,6 @@ class RingGameView extends StatelessWidget {
     // 画面のサイズを取得
     final Size size = MediaQuery.of(context).size;
 
-    final table_name = 'A';
-    final time = '19:30';
-    final num_member = 6;
-
-    final table_name02 = 'B';
-    final time02 = '17:00';
-    final num_member02 = 8;
-
     return ChangeNotifierProvider<RingGameModel>(
       create: (_) => RingGameModel(),
       child: Scaffold(
@@ -40,7 +32,7 @@ class RingGameView extends StatelessWidget {
                       color: Colors.white,
                       margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                       padding: EdgeInsets.fromLTRB(40, 10, 0, 14),
-                      child: Text('Table：' + table_name),
+                      child: Text('Table：' + model.table_name),
                     ),
                     Container(
                       width: size.width,
@@ -53,11 +45,11 @@ class RingGameView extends StatelessWidget {
                           SizedBox(
                             width: 20,
                           ),
-                          Text(num_member.toString() + ' / 9名'),
+                          Text(model.num_member.toString() + ' / 9名'),
                           SizedBox(
                             width: 20,
                           ),
-                          Text(time + ' 開始'),
+                          Text(model.time + ' 開始'),
                         ],
                       ),
                     ),
@@ -72,7 +64,7 @@ class RingGameView extends StatelessWidget {
                       color: Colors.white,
                       margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                       padding: EdgeInsets.fromLTRB(40, 10, 0, 14),
-                      child: Text('Table：' + table_name02),
+                      child: Text('Table：' + model.table_name02),
                     ),
                     Container(
                       width: size.width,
@@ -85,11 +77,11 @@ class RingGameView extends StatelessWidget {
                           SizedBox(
                             width: 20,
                           ),
-                          Text(num_member02.toString() + ' / 9名'),
+                          Text(model.num_member02.toString() + ' / 9名'),
                           SizedBox(
                             width: 20,
                           ),
-                          Text(time02 + ' 開始'),
+                          Text(model.time02 + ' 開始'),
                         ],
                       ),
                     ),
