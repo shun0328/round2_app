@@ -7,10 +7,14 @@ class SettingView extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
+    // providerパターンでModelを使用
     return ChangeNotifierProvider<SettingModel>(
       create: (_) => SettingModel(),
       child: Scaffold(
+        // 画面の背景色を設定
         backgroundColor: Colors.blueGrey,
+
+        // headerの設定
         appBar: AppBar(
           title: const Text(
             '設定',
@@ -18,12 +22,17 @@ class SettingView extends StatelessWidget {
           ),
           backgroundColor: Colors.white,
         ),
+
+        // bodyの設定
         body: Consumer<SettingModel>(
           builder: (context, model, child) {
             return Column(
               children: <Widget>[
+
+
                 // サイズ調整
                 SizedBox(height: size.height * 0.05),
+
 
                 // プロフィール設定
                 SizedBox(
@@ -66,8 +75,10 @@ class SettingView extends StatelessWidget {
                   ),
                 ),
 
+
                 // サイズ調整
                 SizedBox(height: size.height * 0.001),
+
 
                 // 通知設定
                 SizedBox(
@@ -109,6 +120,8 @@ class SettingView extends StatelessWidget {
                     ],
                   ),
                 ),
+
+
               ],
             );
           },

@@ -8,10 +8,14 @@ class TimeLineView extends StatelessWidget {
     // 画面のサイズを取得
     final Size size = MediaQuery.of(context).size;
 
+    // providerパターンでModelを使用
     return ChangeNotifierProvider<TimeLineModel>(
       create: (_) => TimeLineModel(),
       child: Scaffold(
+        // 画面の背景色を設定
         backgroundColor: Colors.blueGrey,
+
+        // headerの設定
         appBar: AppBar(
           title: const Text(
             'タイムライン',
@@ -19,11 +23,15 @@ class TimeLineView extends StatelessWidget {
           ),
           backgroundColor: Colors.white,
         ),
+
+        // bodyの設定
         body: Consumer<TimeLineModel>(
           builder: (context, model, child) {
             return SingleChildScrollView(
               child: Column(
                 children: <Widget>[
+
+
                   // 投稿01
                   Column(
                     children: <Widget>[
@@ -69,6 +77,7 @@ class TimeLineView extends StatelessWidget {
                     ],
                   ),
 
+
                   // 投稿02
                   Column(
                     children: <Widget>[
@@ -108,6 +117,7 @@ class TimeLineView extends StatelessWidget {
                     ],
                   ),
 
+
                   // 投稿03
                   Column(
                     children: <Widget>[
@@ -146,6 +156,8 @@ class TimeLineView extends StatelessWidget {
                       ),
                     ],
                   ),
+
+
                 ],
               ),
             );

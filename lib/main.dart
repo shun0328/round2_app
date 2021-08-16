@@ -8,7 +8,7 @@ import 'timeline_view.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  static const String _title = 'Flutter Code Sample';
+  static const String _title = 'Round2';
 
   @override
   Widget build(BuildContext context) {
@@ -49,23 +49,29 @@ class _HomePageState extends State<HomePage> {
 
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
+
           BottomNavigationBarItem(
             icon: Icon(Icons.home, size: 35.0),
             label: 'イベント',
           ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle_rounded, size: 35.0),
             label: 'プロフィール',
           ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.access_time, size: 35.0),
             label: 'タイムライン',
           ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.settings, size: 35.0),
             label: '設定',
           ),
+
         ],
+
         currentIndex: _selectedIndex,
         fixedColor: Colors.blueAccent,
         onTap: _onItemTapped,

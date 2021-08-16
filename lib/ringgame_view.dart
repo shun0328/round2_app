@@ -8,10 +8,14 @@ class RingGameView extends StatelessWidget {
     // 画面のサイズを取得
     final Size size = MediaQuery.of(context).size;
 
+    // providerパターンでModelを使用
     return ChangeNotifierProvider<RingGameModel>(
       create: (_) => RingGameModel(),
       child: Scaffold(
+        // 画面の背景色を設定
         backgroundColor: Colors.blueGrey,
+
+        // headerの設定
         appBar: AppBar(
           title: const Text(
             'リングゲーム',
@@ -20,10 +24,14 @@ class RingGameView extends StatelessWidget {
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
         ),
+
+        // bodyの設定
         body: Consumer<RingGameModel>(builder: (context, model, child) {
           return SingleChildScrollView(
             child: Column(
               children: <Widget>[
+
+
                 // リングゲームA
                 Column(
                   children: <Widget>[
@@ -32,7 +40,7 @@ class RingGameView extends StatelessWidget {
                       color: Colors.white,
                       margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                       padding: EdgeInsets.fromLTRB(40, 10, 0, 14),
-                      child: Text('Table：' + model.table_name),
+                      child: Text('Table：' + model.tableName),
                     ),
                     Container(
                       width: size.width,
@@ -45,7 +53,7 @@ class RingGameView extends StatelessWidget {
                           SizedBox(
                             width: 20,
                           ),
-                          Text(model.num_member.toString() + ' / 9名'),
+                          Text(model.numMember.toString() + ' / 9名'),
                           SizedBox(
                             width: 20,
                           ),
@@ -56,6 +64,7 @@ class RingGameView extends StatelessWidget {
                   ],
                 ),
 
+
                 // リングゲームB
                 Column(
                   children: <Widget>[
@@ -64,7 +73,7 @@ class RingGameView extends StatelessWidget {
                       color: Colors.white,
                       margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                       padding: EdgeInsets.fromLTRB(40, 10, 0, 14),
-                      child: Text('Table：' + model.table_name02),
+                      child: Text('Table：' + model.tableName02),
                     ),
                     Container(
                       width: size.width,
@@ -77,7 +86,7 @@ class RingGameView extends StatelessWidget {
                           SizedBox(
                             width: 20,
                           ),
-                          Text(model.num_member02.toString() + ' / 9名'),
+                          Text(model.numMember02.toString() + ' / 9名'),
                           SizedBox(
                             width: 20,
                           ),
@@ -87,6 +96,8 @@ class RingGameView extends StatelessWidget {
                     ),
                   ],
                 ),
+
+
               ],
             ),
           );
