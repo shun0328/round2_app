@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 class ProfileModel extends ChangeNotifier {
 
   // ID
-  final String id = 'asdfghjkl';
+  final String id = 'sample123';
   // 名前
-  final String name = 'REONA';
+  final String name = 'SAMPLE';
   // レート
-  final int rating = 6000;
+  final int rating = 2000;
   // 来店回数
-  final int visit_time = 6;
+  final int visitTime = 1;
   // ポイント
-  final point = 270;
+  final point = 100;
   // チップ
-  final chip = 15000;
+  final chip = 1000;
 
   // メソッド
-  void hogeMethod(){
+  void sampleMethod(){
     notifyListeners();
   }
 }

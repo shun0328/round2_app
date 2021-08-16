@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/profile_model.dart';
-import 'package:flutter_app/tournament_view.dart';
 import 'package:provider/provider.dart';
 
 class ProfileView extends StatelessWidget{
@@ -225,7 +224,7 @@ class ProfileView extends StatelessWidget{
                     left: size.width * 0.57,
                     top: size.height * 0.55,
                     child: Text(
-                      model.visit_time.toString() +' 回',
+                      model.visitTime.toString() +' 回',
                       style: TextStyle(
                         //fontWeight: FontWeight.bold,
                         fontSize: bottomFontSize,

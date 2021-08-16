@@ -143,7 +143,6 @@ class EventView extends StatelessWidget{
               ),
 
 
-
               // ラインボタンの配置
               Positioned(
                 top: size.height * 0.44,
