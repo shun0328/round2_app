@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
 class TournamentModel extends ChangeNotifier {
-  //テスト
-  String testText = "testします"; // テストコード
+  // メンバ変数
+  String hoge = "hoge";
 
-  // テストコード
-  void testMethod(){
-    testText = "test成功";
-    print(testText);
+  // メソッド
+  void hogeMethod(){
     notifyListeners();
   }
 }

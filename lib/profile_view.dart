@@ -15,18 +15,6 @@ class ProfileView extends StatelessWidget{
     // カード以外の文字の大きさ
     final double bottomFontSize = size.height * 0.024;
 
-    // ID
-    final String id = 'asdfghjkl';
-    // 名前
-    final String name = 'REONA';
-    // レート
-    final int rating = 6000;
-    // 来店回数
-    final int visit_time = 6;
-    // ポイント
-    final point = 270;
-    // チップ
-    final chip = 15000;
 
     return ChangeNotifierProvider<ProfileModel>(
       create: (_) => ProfileModel(),
@@ -61,7 +49,7 @@ class ProfileView extends StatelessWidget{
                     left: size.width * 0.15 + (size.width*0.40-size.height*0.1992),
                     top: size.height * 0.105,
                     child: Text(
-                      'ID：'+ id,
+                      'ID：'+ model.id,
                       style: TextStyle(
                         fontSize: size.height * 0.024,
                         color: topColor,
@@ -73,7 +61,7 @@ class ProfileView extends StatelessWidget{
                 Positioned(
                     left: size.width * 0.15+ (size.width*0.40-size.height*0.1992),
                     top: size.height * 0.17,
-                    child: Text(name,
+                    child: Text(model.name,
                       style: TextStyle(
                         //fontWeight: FontWeight.bold,
                         fontSize: size.height * 0.043,
@@ -87,7 +75,7 @@ class ProfileView extends StatelessWidget{
                     left: size.width * 0.15+ (size.width*0.40-size.height*0.1992),
                     top: size.height * 0.27,
                     child: Text(
-                      rating.toString()+ ' rt',
+                      model.rating.toString()+ ' rt',
                       style: TextStyle(
                         fontSize: size.height * 0.024,
                         color: topColor,
@@ -185,7 +173,7 @@ class ProfileView extends StatelessWidget{
                     left: size.width * 0.57,
                     top: size.height * 0.45,
                     child: Text(
-                      id,
+                      model.id,
                       style: TextStyle(
                         //fontWeight: FontWeight.bold,
                         fontSize: bottomFontSize,
@@ -211,7 +199,7 @@ class ProfileView extends StatelessWidget{
                     left: size.width * 0.57,
                     top: size.height * 0.506,
                     child: Text(
-                      name,
+                      model.name,
                       style: TextStyle(
                         //fontWeight: FontWeight.bold,
                         fontSize: bottomFontSize,
@@ -237,7 +225,7 @@ class ProfileView extends StatelessWidget{
                     left: size.width * 0.57,
                     top: size.height * 0.55,
                     child: Text(
-                      visit_time.toString() +' 回',
+                      model.visit_time.toString() +' 回',
                       style: TextStyle(
                         //fontWeight: FontWeight.bold,
                         fontSize: bottomFontSize,
@@ -263,7 +251,7 @@ class ProfileView extends StatelessWidget{
                     left: size.width * 0.57,
                     top: size.height * 0.606,
                     child: Text(
-                      point.toString() +' points',
+                      model.point.toString() +' points',
                       style: TextStyle(
                         //fontWeight: FontWeight.bold,
                         fontSize: bottomFontSize,
@@ -289,7 +277,7 @@ class ProfileView extends StatelessWidget{
                     left: size.width * 0.57,
                     top: size.height * 0.656,
                     child: Text(
-                      chip.toString(),
+                      model.chip.toString(),
                       style: TextStyle(
                         //fontWeight: FontWeight.bold,
                         fontSize: bottomFontSize,

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
 class EventModel extends ChangeNotifier {
-  //テスト
-  String testText = "testします"; // テストコード
+  // メンバ変数
+  String hoge = "hoge";
 
-  // テストコード
-  void testMethod(){
-    print(testText);
-    testText = "test成功";
+  // メソッド
+  void hogeMethod(){
     notifyListeners();
   }
 }
