@@ -32,6 +32,8 @@ class EventView extends StatelessWidget {
             // Stack：子要素を重ねて描画できるwidget
             return Stack(
               children: <Widget>[
+
+
                 // トーナメントボタンの配置
                 Positioned(
                   left: size.width * 0.1,
@@ -58,6 +60,7 @@ class EventView extends StatelessWidget {
                   ),
                 ),
 
+
                 // リングゲームボタンの配置
                 Positioned(
                   left: size.width * 0.1,
@@ -83,6 +86,7 @@ class EventView extends StatelessWidget {
                     },
                   ),
                 ),
+
 
                 // インスタグラムボタンの配置
                 Positioned(
@@ -111,6 +115,7 @@ class EventView extends StatelessWidget {
                   ),
                 ),
 
+
                 // ツイッターボタンの配置
                 Positioned(
                   top: size.height * 0.44,
@@ -138,6 +143,7 @@ class EventView extends StatelessWidget {
                   ),
                 ),
 
+
                 // ラインボタンの配置
                 Positioned(
                   top: size.height * 0.44,
@@ -164,6 +170,8 @@ class EventView extends StatelessWidget {
                     ),
                   ),
                 )
+
+
               ],
             );
           },
