@@ -15,7 +15,7 @@ class EventView extends StatelessWidget {
       create: (_) => EventModel(),
       child: Scaffold(
         // 画面の背景色を設定
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.indigo,
 
         // headerの設定
         appBar: AppBar(
