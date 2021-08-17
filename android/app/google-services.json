@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "628980633473",
+    "project_id": "round2-fb",
+    "storage_bucket": "round2-fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628980633473:android:747e6126f425a676e06280",
+        "android_client_info": {
+          "package_name": "kohama0219.flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "628980633473-8gf77aaqr36grjq2voceur7s9adv2von.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSV0xZty1WQ70jRc9Jn24joka4vipRmSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "628980633473-8gf77aaqr36grjq2voceur7s9adv2von.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "628980633473-e5m7651ohlo1fs0gbplh3rm074700bau.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "kohama0219.flutterApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

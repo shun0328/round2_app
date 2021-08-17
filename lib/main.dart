@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/profile_view.dart';
 import 'package:flutter_app/setting_view.dart';
@@ -5,7 +6,11 @@ import 'package:flutter_app/setting_view.dart';
 import 'event_view.dart';
 import 'timeline_view.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   static const String _title = 'Round2';

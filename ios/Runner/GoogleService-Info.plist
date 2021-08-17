@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>628980633473-e5m7651ohlo1fs0gbplh3rm074700bau.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.628980633473-e5m7651ohlo1fs0gbplh3rm074700bau</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDKLjOe3wKdbH1IoNkZgW0aiF868bxxhIA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>628980633473</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>kohama0219.flutterApp</string>
+	<key>PROJECT_ID</key>
+	<string>round2-fb</string>
+	<key>STORAGE_BUCKET</key>
+	<string>round2-fb.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:628980633473:ios:42a2994839c7dd34e06280</string>
+</dict>
+</plist>
