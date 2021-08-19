@@ -7,12 +7,13 @@ import 'package:flutter_app/tournament_view.dart';
 
 import 'event_view.dart';
 import 'login_view.dart';
-import 'timeline_view.dart';
+import 'time_line_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
+
 
   // 最初に表示するWidget
   runApp(MyApp());
@@ -23,6 +24,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   static const String _title = 'Round2';
 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,7 +32,14 @@ class MyApp extends StatelessWidget {
 
       //home: HomePage(),
       //Login画面を表示
-      home: LoginView(),
+      home:  (() {
+        if (FirebaseAuth.instance.currentUser == null) {
+          return LoginView();
+        } else {
+          print(FirebaseAuth.instance.currentUser!.email!+"でログイン");
+          return HomePage();
+        }
+      })(),
     );
   }
 }
