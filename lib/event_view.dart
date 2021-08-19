@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/event_model.dart';
-import 'package:flutter_app/ringgame_view.dart';
+import 'package:flutter_app/ring_game_view.dart';
 import 'package:flutter_app/tournament_view.dart';
 import 'package:provider/provider.dart';
+
+import 'login_view.dart';
 
 class EventView extends StatelessWidget {
   @override
@@ -135,8 +138,17 @@ class EventView extends StatelessWidget {
                       color: Colors.transparent,
                       child: InkWell(
                         borderRadius: BorderRadius.circular(8.0),
-                        onTap: () {
+                        onTap: () async {
                           // ボタンを押した時の処理
+                          // ログアウト処理
+                          // 内部で保持しているログイン情報等が初期化される
+                          await FirebaseAuth.instance.signOut();
+                          // 画面遷移
+                          await Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (context) {
+                              return LoginView();
+                            }),
+                          );
                         },
                       ),
                     ),

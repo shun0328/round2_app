@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/timeline_model.dart';
+import 'package:flutter_app/time_line_model.dart';
 import 'package:provider/provider.dart';
 
 class TimeLineView extends StatelessWidget {

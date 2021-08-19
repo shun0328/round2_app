@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     // 画面のサイズを取得
     final Size size = MediaQuery.of(context).size;
     // カードの中の文字の色

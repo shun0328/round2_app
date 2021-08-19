@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/ringgame_model.dart';
+import 'package:flutter_app/ring_game_model.dart';
 import 'package:provider/provider.dart';
 
 class RingGameView extends StatelessWidget {
