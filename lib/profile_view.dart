@@ -17,7 +17,7 @@ class ProfileView extends StatelessWidget {
 
     // providerパターンでModelを使用
     return ChangeNotifierProvider<ProfileModel>(
-      create: (_) => ProfileModel(),
+      create: (_) => ProfileModel()..fetchProfile(),
       child: Scaffold(
         // 画面の背景色を設定
         backgroundColor: Colors.blueGrey,
@@ -34,7 +34,6 @@ class ProfileView extends StatelessWidget {
             // Stack：子要素を重ねて描画できるwidget
             return Stack(
               children: <Widget>[
-
 
                 // カードの配置
                 Positioned(
@@ -69,7 +68,7 @@ class ProfileView extends StatelessWidget {
                       (size.width * 0.40 - size.height * 0.1992),
                   top: size.height * 0.17,
                   child: Text(
-                    model.name,
+                    model.nickName,
                     style: TextStyle(
                       fontSize: size.height * 0.043,
                       color: topColor,
@@ -202,7 +201,7 @@ class ProfileView extends StatelessWidget {
                   left: size.width * 0.57,
                   top: size.height * 0.506,
                   child: Text(
-                    model.name,
+                    model.nickName,
                     style: TextStyle(
                       fontSize: bottomFontSize,
                       color: bottomColor,
