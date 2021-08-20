@@ -2,17 +2,25 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+
 class ProfileModel extends ChangeNotifier {
   final _userCollection = FirebaseFirestore.instance.collection('users')
       .where("email", isEqualTo:FirebaseAuth.instance.currentUser!.email!);
 
   // リングゲームオブジェクトのリスト
-  List<Profile>? profiles;
+  Profile? profiles;
 
   // ID
   String id = 'a';
   // 名前
-  String nickName = 'a';
+  String _nickName = 'a';
+
+  String get nickName => _nickName;
+  // Setter
+  set nickName(String s) {
+      _nickName = s;
+  }
+
   // レート
   int rating = 10;
   // 来店回数
@@ -41,8 +49,9 @@ class ProfileModel extends ChangeNotifier {
       '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n\n\n';
 
   // メソッド
-  void sampleMethod() {
-    notifyListeners();
+  String getNickName() {
+    fetchProfile();
+    return this.nickName;
   }
 
   void fetchProfile() async {
@@ -62,8 +71,7 @@ class ProfileModel extends ChangeNotifier {
       return Profile(id, nickName, rating, visitTime, point, chip);
     }).toList();
 
-    this.profiles = Profiles;
-    print(profiles![0].id);
+    this.profiles = Profiles[0];
 
     // 終わった事をviewに知らせる
     notifyListeners();
