@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/setting_model.dart';
 import 'package:provider/provider.dart';
 import 'create_user_view.dart';
 import 'login_model.dart';
@@ -17,7 +18,7 @@ class LoginView extends StatelessWidget {
       create: (_) => LoginModel(),
       child: Scaffold(
         // 画面の背景色を設定
-        backgroundColor: Colors.blueGrey,
+          backgroundColor: backGroundColor,
 
         // bodyの設定
         body: Consumer<LoginModel>(

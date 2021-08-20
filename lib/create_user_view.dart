@@ -1,8 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/setting_model.dart';
 import 'package:provider/provider.dart';
 import 'create_user_model.dart';
-import 'login_model.dart';
 import 'login_view.dart';
 import 'main.dart';
 
@@ -17,7 +16,7 @@ class CreateUserView extends StatelessWidget {
       create: (_) => CreateUserModel(),
       child: Scaffold(
         // 画面の背景色を設定
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: backGroundColor,
 
         // bodyの設定
         body: Consumer<CreateUserModel>(

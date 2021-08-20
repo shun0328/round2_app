@@ -12,7 +12,7 @@ class SettingView extends StatelessWidget {
       create: (_) => SettingModel(),
       child: Scaffold(
         // 画面の背景色を設定
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: backGroundColor,
 
         // headerの設定
         appBar: AppBar(

@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/event_model.dart';
+import 'package:flutter_app/login_view.dart';
 import 'package:flutter_app/ring_game_view.dart';
+import 'package:flutter_app/setting_model.dart';
 import 'package:flutter_app/tournament_view.dart';
 import 'package:provider/provider.dart';
-
-import 'login_view.dart';
 
 class EventView extends StatelessWidget {
   @override
@@ -18,7 +18,7 @@ class EventView extends StatelessWidget {
       create: (_) => EventModel(),
       child: Scaffold(
         // 画面の背景色を設定
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: backGroundColor,
 
         // headerの設定
         appBar: AppBar(
@@ -35,8 +35,6 @@ class EventView extends StatelessWidget {
             // Stack：子要素を重ねて描画できるwidget
             return Stack(
               children: <Widget>[
-
-
                 // トーナメントボタンの配置
                 Positioned(
                   left: size.width * 0.1,
@@ -62,7 +60,6 @@ class EventView extends StatelessWidget {
                     },
                   ),
                 ),
-
 
                 // リングゲームボタンの配置
                 Positioned(
@@ -90,7 +87,6 @@ class EventView extends StatelessWidget {
                   ),
                 ),
 
-
                 // インスタグラムボタンの配置
                 Positioned(
                   left: size.width * 0.1,
@@ -117,7 +113,6 @@ class EventView extends StatelessWidget {
                     ),
                   ),
                 ),
-
 
                 // ツイッターボタンの配置
                 Positioned(
@@ -155,7 +150,6 @@ class EventView extends StatelessWidget {
                   ),
                 ),
 
-
                 // ラインボタンの配置
                 Positioned(
                   top: size.height * 0.44,
@@ -182,8 +176,6 @@ class EventView extends StatelessWidget {
                     ),
                   ),
                 )
-
-
               ],
             );
           },
