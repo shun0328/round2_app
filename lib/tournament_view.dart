@@ -12,7 +12,7 @@ class TournamentView extends StatelessWidget {
 
     // providerパターンでModelを使用
     return ChangeNotifierProvider<TournamentModel>(
-      create: (_) => TournamentModel()..fetchTournament(),
+      create: (_) => TournamentModel()..fetchTournament()..fetchProfile(),
       child: Scaffold(
         // 画面の背景色を設定
         backgroundColor: Colors.blueGrey,
@@ -59,103 +59,147 @@ class TournamentView extends StatelessWidget {
     // tournamentオブジェクトを元にレイアウトを行う
     for(var i = 0; i < tournaments.length; i++) {
       list.add(
-          Column(
-            children: <Widget>[
+          ChangeNotifierProvider<TournamentModel>(
+            create: (_) => TournamentModel()..fetchTournament(),
+              child: Consumer<TournamentModel>(
+                  builder: (context, model, child) {
+                    return Column(
+                      children: <Widget>[
 
-              Container(
-                  width: size.width,
-                  color: Colors.white,
-                  margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
-                  padding: EdgeInsets.fromLTRB(40, 10, 0, 14),
-                  child: Text(tournaments[i].tournamentName,
-                    style: TextStyle(fontWeight: FontWeight.bold),)),
+                        Container(
+                            width: size.width,
+                            color: Colors.white,
+                            margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
+                            padding: EdgeInsets.fromLTRB(40, 10, 0, 14),
+                            child: Text(tournaments[i].tournamentName,
+                              style: TextStyle(fontWeight: FontWeight.bold),)),
 
-              Container(
-                width: size.width,
-                color: Colors.white,
-                margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-                child: Table(
-                  border: TableBorder.all(color: Colors.white),
-                  columnWidths: const <int, TableColumnWidth>{
-                    0: FlexColumnWidth(0.4),
-                    1: FlexColumnWidth(0.6),
-                  },
-                  defaultVerticalAlignment:
-                  TableCellVerticalAlignment.top,
-                  children: [
-                    TableRow(
-                      children: [
-                        Text("日付"),
-                        Text(tournaments[i].date),
+                        Container(
+                          width: size.width,
+                          color: Colors.white,
+                          margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                          child: Table(
+                            border: TableBorder.all(color: Colors.white),
+                            columnWidths: const <int, TableColumnWidth>{
+                              0: FlexColumnWidth(0.4),
+                              1: FlexColumnWidth(0.6),
+                            },
+                            defaultVerticalAlignment:
+                            TableCellVerticalAlignment.top,
+                            children: [
+                              TableRow(
+                                children: [
+                                  Text("日付"),
+                                  Text(tournaments[i].date),
+                                ],
+                              ),
+                              TableRow(
+                                children: [
+                                  Text("エントリー"),
+                                  Text(tournaments[i].entry),
+                                ],
+                              ),
+                              TableRow(
+                                children: [
+                                  Text("レイトレジスト"),
+                                  Text(tournaments[i].lateRegistration),
+                                ],
+                              ),
+                              TableRow(
+                                children: [
+                                  Text("バイイン"),
+                                  Text(tournaments[i].buyIn.toString()),
+                                ],
+                              ),
+                              TableRow(
+                                children: [
+                                  Text("リバイ"),
+                                  Text(tournaments[i].reBuy.toString()),
+                                ],
+                              ),
+                              TableRow(
+                                children: [
+                                  Text("初期スタック"),
+                                  Text(tournaments[i].stack.toString()),
+                                ],
+                              ),
+                              TableRow(
+                                children: [
+                                  Text("ストラクチャー"),
+                                  Text(tournaments[i].structure),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        Container(
+                          width: size.width,
+                          color: Colors.white,
+                          margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          padding: EdgeInsets.fromLTRB(40, 10, 0, 10),
+                          child: Row(
+                            children: [
+
+                              
+
+
+
+                              Container(
+                                width: size.width * 0.28,
+                                child: ElevatedButton(
+                                  child: (() {
+                                    if (tournaments[i].isJoined() == true) {
+                                      return Text('キャンセル');
+                                    }else{
+                                      return Text('参加');
+                                    }
+                                  })(),
+                                  style: ElevatedButton.styleFrom(
+                                    textStyle: TextStyle(),
+                                    primary: (() {
+                                      if (tournaments[i].isJoined() == true) {
+                                        return Colors.pinkAccent;
+                                      }else{
+                                        return Colors.lightBlueAccent;
+                                      }
+                                    })(),
+                                    onPrimary: Colors.black,
+                                  ),
+                                  onPressed: () {
+                                    if(tournaments[i].isJoined() == true){
+                                      model.cancelTournament(tournaments[i]);
+                                    }else{
+                                      model.joinTournament(tournaments[i]);
+                                    }
+                                    Navigator.pushReplacement(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, animation1, animation2) => TournamentView(),
+                                        transitionDuration: Duration(seconds: 0),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+
+
+                              SizedBox(width: 100),
+                              Icon(Icons.account_circle, size: 30.0),
+                              Text(' 現在：'),
+                              Text(tournaments[i].member.length.toString()),
+                              Text(' 人'),
+                            ],
+                          ),
+                        ),
                       ],
-                    ),
-                    TableRow(
-                      children: [
-                        Text("エントリー"),
-                        Text(tournaments[i].entry),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Text("レイトレジスト"),
-                        Text(tournaments[i].lateRegistration),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Text("バイイン"),
-                        Text(tournaments[i].buyIn.toString()),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Text("リバイ"),
-                        Text(tournaments[i].reBuy.toString()),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Text("初期スタック"),
-                        Text(tournaments[i].stack.toString()),
-                      ],
-                    ),
-                    TableRow(
-                      children: [
-                        Text("ストラクチャー"),
-                        Text(tournaments[i].structure),
-                      ],
-                    ),
-                  ],
-                ),
+                    );
+                  }
               ),
 
-              Container(
-                width: size.width,
-                color: Colors.white,
-                margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                padding: EdgeInsets.fromLTRB(40, 10, 0, 10),
-                child: Row(
-                  children: [
-                    ElevatedButton(
-                      child: const Text('参加'),
-                      style: ElevatedButton.styleFrom(
-                        textStyle: TextStyle(),
-                        primary: Colors.lightBlueAccent,
-                        onPrimary: Colors.black,
-                      ),
-                      onPressed: () {},
-                    ),
-                    SizedBox(width: 100),
-                    Icon(Icons.account_circle, size: 30.0),
-                    Text(' 現在：'),
-                    Text(tournaments[i].numMember.toString()),
-                    Text(' 人'),
-                  ],
-                ),
-              ),
-            ],
-          )
+          ),
+
       );
     }
     return SingleChildScrollView(child: Column(children: list));

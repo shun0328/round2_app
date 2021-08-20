@@ -12,8 +12,6 @@ class RingGameModel extends ChangeNotifier {
 
     // データベースからデータを受け取る
     final snapshot = await _ringGameCollection.get();
-    
-
 
     // 受け取った情報からインスタンスを生成
     final List<RingGame> ringGames = snapshot.docs.map((DocumentSnapshot document) {

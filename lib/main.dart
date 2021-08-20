@@ -17,8 +17,6 @@ void main() async {
 
   // 最初に表示するWidget
   runApp(MyApp());
-
-
 }
 
 class MyApp extends StatelessWidget {
