@@ -1,11 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/setting_model.dart';
 import 'package:flutter_app/tournament_model.dart';
 import 'package:provider/provider.dart';
 
 class TournamentView extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     // 画面のサイズを取得
@@ -13,7 +11,9 @@ class TournamentView extends StatelessWidget {
 
     // providerパターンでModelを使用
     return ChangeNotifierProvider<TournamentModel>(
-      create: (_) => TournamentModel()..fetchTournament()..fetchProfile(),
+      create: (_) => TournamentModel()
+        ..fetchTournament()
+        ..fetchProfile(),
       child: Scaffold(
         // 画面の背景色を設定
         backgroundColor: backGroundColor,
@@ -29,52 +29,36 @@ class TournamentView extends StatelessWidget {
         ),
 
         // bodyの設定
-        body: Consumer<TournamentModel>(
-          builder: (context, model, child) {
+        body: Consumer<TournamentModel>(builder: (context, model, child) {
+          // ローディング画面
+          if (model.tournaments == null) {
+            return Center(
+              child: CircularProgressIndicator(
+                valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+              ),
+            );
+          } else {
+            // 最後にWidgetのリスト"list"を使って画面を構成する
+            List<Widget> list = [];
 
-              return viewTournament(size, model.tournaments);
-
-
-          }
-        ),
-      ),
-    );
-  }
-
-
-
-  // トーナメントViewを表示するためのカスタムWidgetを作成
-  Widget viewTournament (Size size, List<Tournament>? tournaments) {
-
-    // 最後にWidgetのリスト"list"をColumnに包んでViewに渡す
-    List <Widget> list = [];
-
-    // ローディング画面
-    if(tournaments == null){
-      return Center(
-        child: Text('Loading...',
-          textAlign: TextAlign.center,),
-      );
-    }
-
-    // tournamentオブジェクトを元にレイアウトを行う
-    for(var i = 0; i < tournaments.length; i++) {
-      list.add(
-          ChangeNotifierProvider<TournamentModel>(
-            create: (_) => TournamentModel()..fetchTournament(),
-              child: Consumer<TournamentModel>(
-                  builder: (context, model, child) {
+            // tournamentオブジェクトを元にレイアウトを行う
+            for (var i = 0; i < model.tournaments!.length; i++) {
+              list.add(
+                ChangeNotifierProvider<TournamentModel>(
+                  create: (_) => TournamentModel()..fetchTournament(),
+                  child: Consumer<TournamentModel>(
+                      builder: (context, model, child) {
                     return Column(
                       children: <Widget>[
-
                         Container(
                             width: size.width,
                             color: Colors.white,
                             margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
                             padding: EdgeInsets.fromLTRB(40, 10, 0, 14),
-                            child: Text(tournaments[i].tournamentName,
-                              style: TextStyle(fontWeight: FontWeight.bold),)),
-
+                            child: Text(
+                              model.tournaments?[i].tournamentName ?? 'hoge',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )),
                         Container(
                           width: size.width,
                           color: Colors.white,
@@ -87,54 +71,58 @@ class TournamentView extends StatelessWidget {
                               1: FlexColumnWidth(0.6),
                             },
                             defaultVerticalAlignment:
-                            TableCellVerticalAlignment.top,
+                                TableCellVerticalAlignment.top,
                             children: [
                               TableRow(
                                 children: [
                                   Text("日付"),
-                                  Text(tournaments[i].date),
+                                  Text(model.tournaments?[i].date ?? 'hoge'),
                                 ],
                               ),
                               TableRow(
                                 children: [
                                   Text("エントリー"),
-                                  Text(tournaments[i].entry),
+                                  Text(model.tournaments?[i].entry ?? 'hoge'),
                                 ],
                               ),
                               TableRow(
                                 children: [
                                   Text("レイトレジスト"),
-                                  Text(tournaments[i].lateRegistration),
+                                  Text(model.tournaments?[i].lateRegistration ??
+                                      'hoge'),
                                 ],
                               ),
                               TableRow(
                                 children: [
                                   Text("バイイン"),
-                                  Text(tournaments[i].buyIn.toString()),
+                                  Text(model.tournaments?[i].buyIn.toString() ??
+                                      '0'),
                                 ],
                               ),
                               TableRow(
                                 children: [
                                   Text("リバイ"),
-                                  Text(tournaments[i].reBuy.toString()),
+                                  Text(model.tournaments?[i].reBuy.toString() ??
+                                      '0'),
                                 ],
                               ),
                               TableRow(
                                 children: [
                                   Text("初期スタック"),
-                                  Text(tournaments[i].stack.toString()),
+                                  Text(model.tournaments?[i].stack.toString() ??
+                                      '0'),
                                 ],
                               ),
                               TableRow(
                                 children: [
                                   Text("ストラクチャー"),
-                                  Text(tournaments[i].structure),
+                                  Text(
+                                      model.tournaments?[i].structure ?? 'url'),
                                 ],
                               ),
                             ],
                           ),
                         ),
-
                         Container(
                           width: size.width,
                           color: Colors.white,
@@ -142,67 +130,78 @@ class TournamentView extends StatelessWidget {
                           padding: EdgeInsets.fromLTRB(40, 10, 0, 10),
                           child: Row(
                             children: [
-
-                              
-
-
-
                               Container(
                                 width: size.width * 0.28,
                                 child: ElevatedButton(
                                   child: (() {
-                                    if (tournaments[i].isJoined() == true) {
-                                      return Text('キャンセル');
-                                    }else{
-                                      return Text('参加');
+                                    if (model.tournaments?[i].isJoined() ??
+                                        false == true) {
+                                      return Text(
+                                        'キャンセル',
+                                        style: TextStyle(color: Colors.white),
+                                      );
+                                    } else {
+                                      return Text(
+                                        '参加',
+                                        style: TextStyle(color: Colors.white),
+                                      );
                                     }
                                   })(),
                                   style: ElevatedButton.styleFrom(
                                     textStyle: TextStyle(),
                                     primary: (() {
-                                      if (tournaments[i].isJoined() == true) {
+                                      if (model.tournaments?[i].isJoined() ??
+                                          false == true) {
                                         return Colors.pinkAccent;
-                                      }else{
+                                      } else {
                                         return Colors.lightBlueAccent;
                                       }
                                     })(),
                                     onPrimary: Colors.black,
                                   ),
                                   onPressed: () {
-                                    if(tournaments[i].isJoined() == true){
-                                      model.cancelTournament(tournaments[i]);
-                                    }else{
-                                      model.joinTournament(tournaments[i]);
+                                    if (model.tournaments![i].isJoined() ==
+                                        true) {
+                                      model.cancelTournament(
+                                          model.tournaments![i]);
+                                    } else {
+                                      model.joinTournament(
+                                          model.tournaments![i]);
                                     }
                                     Navigator.pushReplacement(
                                       context,
                                       PageRouteBuilder(
-                                        pageBuilder: (context, animation1, animation2) => TournamentView(),
-                                        transitionDuration: Duration(seconds: 0),
+                                        pageBuilder:
+                                            (context, animation1, animation2) =>
+                                                TournamentView(),
+                                        transitionDuration:
+                                            Duration(seconds: 0),
                                       ),
                                     );
                                   },
                                 ),
                               ),
-
-
                               SizedBox(width: 100),
                               Icon(Icons.account_circle, size: 30.0),
                               Text(' 現在：'),
-                              Text(tournaments[i].member.length.toString()),
+                              Text(model.tournaments?[i].member.length
+                                      .toString() ??
+                                  '0'),
                               Text(' 人'),
                             ],
                           ),
                         ),
                       ],
                     );
-                  }
-              ),
+                  }),
+                ),
+              );
+            }
 
-          ),
-
-      );
-    }
-    return SingleChildScrollView(child: Column(children: list));
+            return SingleChildScrollView(child: Column(children: list));
+          }
+        }),
+      ),
+    );
   }
 }

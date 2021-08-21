@@ -28,69 +28,68 @@ class RingGameView extends StatelessWidget {
 
         // bodyの設定
         body: Consumer<RingGameModel>(builder: (context, model, child) {
-          return viewRingGame(size, model.ringGames);
+          // ローディング画面
+          if (model.ringGames == null) {
+            return Center(
+              child: CircularProgressIndicator(
+                valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+              ),
+            );
+          }
+          // データが読み込めたらWidgetを作成
+          else {
+            // 最後にWidgetのリスト"list"を使って画面を構成する
+            List<Widget> list = [];
+
+            // RingGameオブジェクトを元にレイアウトを行う
+            for (var i = 0; i < model.ringGames!.length; i++) {
+              list.add(Column(
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      // テーブル名を設置
+                      Container(
+                        width: size.width,
+                        color: Colors.white,
+                        margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                        padding: EdgeInsets.fromLTRB(40, 10, 0, 14),
+                        child: Text('Table：' + model.ringGames![i].tableName),
+                      ),
+                      // アイコンと人数と時間を横に並べる
+                      Container(
+                        width: size.width,
+                        color: Colors.white,
+                        margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                        padding: EdgeInsets.fromLTRB(40, 0, 0, 10),
+                        child: Row(
+                          children: [
+                            // アイコン
+                            Icon(Icons.account_circle, size: 30.0),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            // 人数
+                            Text(model.ringGames![i].numMember.toString() +
+                                ' / 9名'),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            // 時間
+                            Text(model.ringGames![i].time + ' 開始'),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ));
+            }
+
+            // 作成したウィジェットのリストででSingleChildScrollViewを構成
+            return SingleChildScrollView(child: Column(children: list));
+          }
         }),
       ),
     );
-  }
-
-
-  // リングゲームViewを表示するためのカスタムWidgetを作成
-  Widget viewRingGame (Size size, List<RingGame>? ringGames) {
-
-    // 最後にWidgetのリスト"list"をColumnに包んでViewに渡す
-    List <Widget> list = [];
-
-    // ローディング画面
-    if(ringGames == null){
-      return Center(
-        child: Text('Loading...',
-          textAlign: TextAlign.center,),
-      );
-    }
-
-    // RingGameオブジェクトを元にレイアウトを行う
-    for(var i = 0; i < ringGames.length; i++) {
-      list.add(
-          Column(
-            children: <Widget>[
-              // リングゲームA
-              Column(
-                children: <Widget>[
-                  Container(
-                    width: size.width,
-                    color: Colors.white,
-                    margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    padding: EdgeInsets.fromLTRB(40, 10, 0, 14),
-                    child: Text('Table：' + ringGames[i].tableName),
-                  ),
-                  Container(
-                    width: size.width,
-                    color: Colors.white,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
-                    padding: EdgeInsets.fromLTRB(40, 0, 0, 10),
-                    child: Row(
-                      children: [
-                        Icon(Icons.account_circle, size: 30.0),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(ringGames[i].numMember.toString() + ' / 9名'),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text(ringGames[i].time + ' 開始'),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-
-
-            ],
-          )
-      );
-    }
-    return SingleChildScrollView(child: Column(children: list));
   }
 }

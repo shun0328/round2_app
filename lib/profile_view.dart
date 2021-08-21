@@ -31,6 +31,15 @@ class ProfileView extends StatelessWidget {
         // bodyの設定
         body: Consumer<ProfileModel>(
           builder: (context, model, child) {
+            // ローディング画面
+            if (model.profile == null) {
+              return Center(
+                child: CircularProgressIndicator(
+                  valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              );
+            }
+
             // Stack：子要素を重ねて描画できるwidget
             return Stack(
               children: <Widget>[
@@ -39,10 +48,7 @@ class ProfileView extends StatelessWidget {
                   left: (size.width * 0.5) - (size.height * 0.24 * 0.83),
                   top: size.height * 0.09,
                   height: size.height * 0.24,
-                  child: FittedBox(
-                    child: Image.asset('images/black.png'),
-                    fit: BoxFit.fill,
-                  ),
+                  child: Image.asset('images/black.png'),
                 ),
 
                 // IDの配置（カード内）
