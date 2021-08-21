@@ -105,7 +105,7 @@ class EventView extends StatelessWidget {
                       child: InkWell(
                         borderRadius: BorderRadius.circular(8.0),
                         onTap: () {
-                          // ボタンを押した時の処理
+                          model.launchInstagram();
                         },
                       ),
                     ),
@@ -133,6 +133,7 @@ class EventView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0),
                         onTap: () {
                           // ボタンを押した時の処理
+                          model.launchTwitter();
                         },
                       ),
                     ),
@@ -160,6 +161,7 @@ class EventView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0),
                         onTap: () {
                           // ボタンを押した時の処理
+                          model.launchLine();
                         },
                       ),
                     ),
@@ -187,6 +189,7 @@ class EventView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0),
                         onTap: () {
                           // ボタンを押した時の処理
+                          model.launchFacebook();
                         },
                       ),
                     ),
