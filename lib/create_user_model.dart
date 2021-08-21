@@ -17,6 +17,7 @@ class CreateUserModel extends ChangeNotifier {
   String nickName = '';
 
   // ランダムで6桁の文字列を作成する関数(衝突確率 1/308915776)
+  // 戻り値の例： fgdidn, aktbxo
   idGenerator() {
     int smallLetterStart = 97;
     int smallLetterCount = 26;
@@ -66,7 +67,6 @@ class CreateUserModel extends ChangeNotifier {
       'point': 0,
       'chip': 0,
       'rating': 0,
-      //'id':FirebaseAuth.instance.currentUser!.uid,
       'id': idGenerator(),
     });
 

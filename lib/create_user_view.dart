@@ -199,7 +199,6 @@ class CreateUserView extends StatelessWidget {
                             try {
                               // 新規ユーザ登録
                               await model.addUser();
-
                               // ユーザ登録が成功したら登録完了の表示＆画面遷移
                               final snackBar = SnackBar(content: Text("登録完了"));
                               ScaffoldMessenger.of(context)
