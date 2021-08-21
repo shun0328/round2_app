@@ -53,14 +53,10 @@ class TournamentModel extends ChangeNotifier {
 
     for (var i = 0; i < member.length; i++) {
       if (member[i] == mail) {
-        print(member.length);
         member.removeAt(i);
         i--;
       }
-      print(member.length);
     }
-
-    print(member);
     await FirebaseFirestore.instance
         .collection('tournaments')
         .doc(tournament.id)
