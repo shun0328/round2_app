@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/profile_model.dart';
+import 'package:flutter_app/setting_model.dart';
 import 'package:provider/provider.dart';
 
 class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     // 画面のサイズを取得
     final Size size = MediaQuery.of(context).size;
     // カードの中の文字の色
@@ -20,7 +20,7 @@ class ProfileView extends StatelessWidget {
       create: (_) => ProfileModel()..fetchProfile(),
       child: Scaffold(
         // 画面の背景色を設定
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: backGroundColor,
 
         // headerの設定
         appBar: AppBar(
@@ -34,18 +34,16 @@ class ProfileView extends StatelessWidget {
             // Stack：子要素を重ねて描画できるwidget
             return Stack(
               children: <Widget>[
-
                 // カードの配置
                 Positioned(
                   left: (size.width * 0.5) - (size.height * 0.24 * 0.83),
                   top: size.height * 0.09,
                   height: size.height * 0.24,
                   child: FittedBox(
-                    child: Image.asset('images/bronze.png'),
+                    child: Image.asset('images/black.png'),
                     fit: BoxFit.fill,
                   ),
                 ),
-
 
                 // IDの配置（カード内）
                 Positioned(
@@ -61,7 +59,6 @@ class ProfileView extends StatelessWidget {
                   ),
                 ),
 
-
                 // 名前の配置（カード内）
                 Positioned(
                   left: size.width * 0.15 +
@@ -76,7 +73,6 @@ class ProfileView extends StatelessWidget {
                   ),
                 ),
 
-
                 // レートの配置（カード内）
                 Positioned(
                   left: size.width * 0.15 +
@@ -90,7 +86,6 @@ class ProfileView extends StatelessWidget {
                     ),
                   ),
                 ),
-
 
                 // プロフィール画像の配置（カード内）
                 Positioned(
@@ -109,7 +104,6 @@ class ProfileView extends StatelessWidget {
                     ),
                   ),
                 ),
-
 
                 // プロフィール詳細
                 Positioned(
@@ -153,7 +147,6 @@ class ProfileView extends StatelessWidget {
                   ),
                 ),
 
-
                 // 'ID'の配置
                 Positioned(
                   left: size.width * 0.2,
@@ -166,7 +159,6 @@ class ProfileView extends StatelessWidget {
                     ),
                   ),
                 ),
-
 
                 // IDの配置
                 Positioned(
@@ -181,7 +173,6 @@ class ProfileView extends StatelessWidget {
                   ),
                 ),
 
-
                 // '名前'の配置
                 Positioned(
                   left: size.width * 0.2,
@@ -194,7 +185,6 @@ class ProfileView extends StatelessWidget {
                     ),
                   ),
                 ),
-
 
                 // 名前の配置
                 Positioned(
@@ -209,7 +199,6 @@ class ProfileView extends StatelessWidget {
                   ),
                 ),
 
-
                 // '来店回数'の配置
                 Positioned(
                   left: size.width * 0.2,
@@ -222,7 +211,6 @@ class ProfileView extends StatelessWidget {
                     ),
                   ),
                 ),
-
 
                 // 来店回数の配置
                 Positioned(
@@ -237,7 +225,6 @@ class ProfileView extends StatelessWidget {
                   ),
                 ),
 
-
                 // 'ポイント'の配置
                 Positioned(
                   left: size.width * 0.2,
@@ -250,7 +237,6 @@ class ProfileView extends StatelessWidget {
                     ),
                   ),
                 ),
-
 
                 // ポイントの配置
                 Positioned(
@@ -265,7 +251,6 @@ class ProfileView extends StatelessWidget {
                   ),
                 ),
 
-
                 // チップの配置
                 Positioned(
                   left: size.width * 0.2,
@@ -279,7 +264,6 @@ class ProfileView extends StatelessWidget {
                   ),
                 ),
 
-
                 // チップの配置
                 Positioned(
                   left: size.width * 0.57,
@@ -292,8 +276,6 @@ class ProfileView extends StatelessWidget {
                     ),
                   ),
                 ),
-
-
               ],
             );
           },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/setting_model.dart';
 import 'package:flutter_app/time_line_model.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +14,7 @@ class TimeLineView extends StatelessWidget {
       create: (_) => TimeLineModel(),
       child: Scaffold(
         // 画面の背景色を設定
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: backGroundColor,
 
         // headerの設定
         appBar: AppBar(

@@ -1,33 +1,25 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class CreateUserModel extends ChangeNotifier {
-
-  // メッセージ表示用
-  String infoText = '';
-  // 入力したメールアドレス・パスワード
+  // 入力したメールアドレス
   String email = '';
+  // 入力したパスワード
   String password = '';
+  // 入力した確認用パスワード
   String password2 = '';
+  // 入力したお名前
   String name = '';
+  // 入力したニックネーム
   String nickName = '';
 
-  // メソッド
-  void sampleMethod() {
-    notifyListeners();
-  }
-
-  // ランダムで6桁の文字列を作成
-  // 衝突確率 1/308915776
+  // ランダムで6桁の文字列を作成する関数(衝突確率 1/308915776)
   idGenerator() {
-    // 小文字のアルファベットの文字列を作成
     int smallLetterStart = 97;
     int smallLetterCount = 26;
-
     var alphabetArray = [];
     var rand = new math.Random();
     for (var i = 0; i < 8; i++) {
@@ -38,23 +30,22 @@ class CreateUserModel extends ChangeNotifier {
     return alphabetArray.join('');
   }
 
-  // メソッド
-  Future addUser() async{
-
+  // 入力した情報をデータベースに格納する関数
+  Future addUser() async {
     // 不備があったらエラーを返す
-    if(name == ''){
+    if (name == '') {
       throw 'お名前が入力されていません';
     }
-    if(nickName == ''){
+    if (nickName == '') {
       throw 'ニックネームが入力されていません';
     }
-    if(email == ''){
+    if (email == '') {
       throw 'メールアドレスが入力されていません';
     }
-    if(password == ''){
+    if (password == '') {
       throw 'パスワードが入力されていません';
     }
-    if(password != password2){
+    if (password != password2) {
       throw '確認用パスワードがパスワードと一致しません';
     }
 
@@ -76,8 +67,7 @@ class CreateUserModel extends ChangeNotifier {
       'chip': 0,
       'rating': 0,
       //'id':FirebaseAuth.instance.currentUser!.uid,
-      'id':idGenerator(),
-
+      'id': idGenerator(),
     });
 
     notifyListeners();

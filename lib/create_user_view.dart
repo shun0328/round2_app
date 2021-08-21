@@ -1,10 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/create_user_model.dart';
+import 'package:flutter_app/login_view.dart';
+import 'package:flutter_app/main.dart';
+import 'package:flutter_app/setting_model.dart';
 import 'package:provider/provider.dart';
-import 'create_user_model.dart';
-import 'login_model.dart';
-import 'login_view.dart';
-import 'main.dart';
 
 class CreateUserView extends StatelessWidget {
   @override
@@ -17,34 +16,42 @@ class CreateUserView extends StatelessWidget {
       create: (_) => CreateUserModel(),
       child: Scaffold(
         // 画面の背景色を設定
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: backGroundColor,
 
         // bodyの設定
         body: Consumer<CreateUserModel>(
           builder: (context, model, child) {
-
+            // 真ん中に配置(縦方向)
             return Center(
-
               child: Container(
                 color: Colors.white,
-                margin: EdgeInsets.fromLTRB(size.width*0.05,size.height*0.1, size.width*0.05,size.height*0.05),
-                padding: EdgeInsets.fromLTRB(size.width*0.1,0, size.width*0.1,0),
+                // 外側の間隔を調整
+                margin: EdgeInsets.fromLTRB(
+                    size.width * 0.05, 0, size.width * 0.05, 0),
+                // 内側の間隔を調整
+                padding: EdgeInsets.fromLTRB(
+                    size.width * 0.1, 0, size.width * 0.1, 0),
+
+                // スクロールするためのウィジェット
                 child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
-
                       // テキスト'会員登録'の配置
                       Container(
-                        margin: EdgeInsets.fromLTRB(0,size.height*0.04,0,size.height*0.03),
-                        child: Text("会員登録",
+                        margin: EdgeInsets.fromLTRB(
+                            0, size.height * 0.04, 0, size.height * 0.03),
+                        child: Text(
+                          "会員登録",
                           style: TextStyle(
                             fontSize: size.height * 0.02,
-                          ),),
+                          ),
+                        ),
                       ),
 
                       // お名前入力フォームの配置
                       Container(
-                        margin: EdgeInsets.fromLTRB(0,0,0,size.height*0.03),
+                        margin:
+                            EdgeInsets.fromLTRB(0, 0, 0, size.height * 0.03),
                         height: size.height * 0.05,
                         child: TextField(
                           decoration: InputDecoration(
@@ -67,7 +74,8 @@ class CreateUserView extends StatelessWidget {
 
                       // ニックネーム入力フォームの配置
                       Container(
-                        margin: EdgeInsets.fromLTRB(0,0,0,size.height*0.03),
+                        margin:
+                            EdgeInsets.fromLTRB(0, 0, 0, size.height * 0.03),
                         height: size.height * 0.05,
                         child: TextField(
                           decoration: InputDecoration(
@@ -90,7 +98,8 @@ class CreateUserView extends StatelessWidget {
 
                       // メールアドレス入力フォームの配置
                       Container(
-                        margin: EdgeInsets.fromLTRB(0,0,0,size.height*0.03),
+                        margin:
+                            EdgeInsets.fromLTRB(0, 0, 0, size.height * 0.03),
                         height: size.height * 0.05,
                         child: TextField(
                           decoration: InputDecoration(
@@ -113,7 +122,8 @@ class CreateUserView extends StatelessWidget {
 
                       // パスワード入力フォームの配置
                       Container(
-                        margin: EdgeInsets.fromLTRB(0,0,0,size.height*0.03),
+                        margin:
+                            EdgeInsets.fromLTRB(0, 0, 0, size.height * 0.03),
                         height: size.height * 0.05,
                         child: TextField(
                           obscureText: true,
@@ -158,9 +168,9 @@ class CreateUserView extends StatelessWidget {
                         ),
                       ),
 
-
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, size.height*0.02, 0, size.height*0.02),
+                        margin: EdgeInsets.fromLTRB(
+                            0, size.height * 0.02, 0, size.height * 0.02),
                         width: double.infinity,
                         // ユーザー登録ボタン
                         child: TextButton(
@@ -169,17 +179,14 @@ class CreateUserView extends StatelessWidget {
                             textStyle: TextStyle(fontSize: 11),
                             primary: Colors.grey,
                           ),
-                          onPressed: () {
-
-                          },
+                          onPressed: () {},
                         ),
                       ),
-
 
                       // 登録ボタンの配置
                       Container(
                         width: double.infinity,
-                        height: size.height*0.05,
+                        height: size.height * 0.05,
                         // ログイン登録ボタン
                         child: ElevatedButton(
                           child: Text('登録する'),
@@ -194,31 +201,30 @@ class CreateUserView extends StatelessWidget {
                               await model.addUser();
 
                               // ユーザ登録が成功したら登録完了の表示＆画面遷移
-                              final snackBar = SnackBar(
-                                  content: Text("登録完了")
-                              );
-                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                              final snackBar = SnackBar(content: Text("登録完了"));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
                               // 画面遷移
                               await Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(builder: (context) {
                                   return HomePage();
                                 }),
                               );
-                            }catch(e){
+                            } catch (e) {
                               // 登録に失敗したらエラーの表示
-                              final snackBar = SnackBar(
-                                  content: Text(e.toString())
-                              );
-                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                              final snackBar =
+                                  SnackBar(content: Text(e.toString()));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
                             }
                           },
                         ),
                       ),
 
-
                       Container(
                         width: double.infinity,
-                        margin: EdgeInsets.fromLTRB(0, size.height*0.02, 0, 0),
+                        margin:
+                            EdgeInsets.fromLTRB(0, size.height * 0.02, 0, 0),
                         child: TextButton(
                           child: Text('アカウントをお持ちの方はこちら'),
                           style: TextButton.styleFrom(
@@ -236,16 +242,11 @@ class CreateUserView extends StatelessWidget {
                           },
                         ),
                       ),
-
                     ],
                   ),
                 ),
-
-
               ),
             );
-
-
           },
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/setting_model.dart';
 import 'package:flutter_app/tournament_model.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,7 @@ class TournamentView extends StatelessWidget {
       create: (_) => TournamentModel()..fetchTournament()..fetchProfile(),
       child: Scaffold(
         // 画面の背景色を設定
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: backGroundColor,
 
         // headerの設定
         appBar: AppBar(
