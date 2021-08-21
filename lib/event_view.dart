@@ -1,7 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/event_model.dart';
-import 'package:flutter_app/login_view.dart';
 import 'package:flutter_app/ring_game_view.dart';
 import 'package:flutter_app/setting_model.dart';
 import 'package:flutter_app/tournament_view.dart';
@@ -91,7 +89,7 @@ class EventView extends StatelessWidget {
                 Positioned(
                   left: size.width * 0.1,
                   top: size.height * 0.44,
-                  width: size.width * 0.2,
+                  width: size.width * 0.35,
                   height: size.width * 0.22,
                   child: Container(
                     decoration: BoxDecoration(
@@ -116,10 +114,10 @@ class EventView extends StatelessWidget {
 
                 // ツイッターボタンの配置
                 Positioned(
-                  top: size.height * 0.44,
-                  left: size.width * 0.5 - size.width * 0.1,
-                  width: size.width * 0.2,
-                  height: size.width * 0.2,
+                  left: size.width * 0.1,
+                  top: size.height * 0.55,
+                  width: size.width * 0.35,
+                  height: size.width * 0.22,
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
@@ -133,17 +131,8 @@ class EventView extends StatelessWidget {
                       color: Colors.transparent,
                       child: InkWell(
                         borderRadius: BorderRadius.circular(8.0),
-                        onTap: () async {
+                        onTap: () {
                           // ボタンを押した時の処理
-                          // ログアウト処理
-                          // 内部で保持しているログイン情報等が初期化される
-                          await FirebaseAuth.instance.signOut();
-                          // 画面遷移
-                          await Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(builder: (context) {
-                              return LoginView();
-                            }),
-                          );
                         },
                       ),
                     ),
@@ -154,8 +143,8 @@ class EventView extends StatelessWidget {
                 Positioned(
                   top: size.height * 0.44,
                   right: size.width * 0.1,
-                  width: size.width * 0.2,
-                  height: size.width * 0.2,
+                  width: size.width * 0.35,
+                  height: size.width * 0.22,
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
@@ -175,7 +164,34 @@ class EventView extends StatelessWidget {
                       ),
                     ),
                   ),
-                )
+                ),
+
+                // フェイスブックボタンの配置
+                Positioned(
+                  top: size.height * 0.55,
+                  right: size.width * 0.1,
+                  width: size.width * 0.35,
+                  height: size.width * 0.22,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      image: DecorationImage(
+                        image: AssetImage(
+                          'images/facebook.png',
+                        ),
+                      ),
+                    ),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(8.0),
+                        onTap: () {
+                          // ボタンを押した時の処理
+                        },
+                      ),
+                    ),
+                  ),
+                ),
               ],
             );
           },
