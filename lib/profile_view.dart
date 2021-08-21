@@ -31,6 +31,15 @@ class ProfileView extends StatelessWidget {
         // bodyの設定
         body: Consumer<ProfileModel>(
           builder: (context, model, child) {
+            // ローディング画面
+            if (model.profile == null) {
+              return Center(
+                child: CircularProgressIndicator(
+                  valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              );
+            }
+
             // Stack：子要素を重ねて描画できるwidget
             return Stack(
               children: <Widget>[
