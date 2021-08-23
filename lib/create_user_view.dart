@@ -1,9 +1,10 @@
+import 'package:Round2/setting_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/create_user_model.dart';
-import 'package:flutter_app/login_view.dart';
-import 'package:flutter_app/main.dart';
-import 'package:flutter_app/setting_model.dart';
 import 'package:provider/provider.dart';
+
+import 'create_user_model.dart';
+import 'login_view.dart';
+import 'main.dart';
 
 class CreateUserView extends StatelessWidget {
   @override

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/event_model.dart';
-import 'package:flutter_app/ring_game_view.dart';
-import 'package:flutter_app/setting_model.dart';
-import 'package:flutter_app/tournament_view.dart';
 import 'package:provider/provider.dart';
+
+import 'event_model.dart';
+import 'ring_game_view.dart';
+import 'setting_model.dart';
+import 'tournament_view.dart';
 
 class EventView extends StatelessWidget {
   @override

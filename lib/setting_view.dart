@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/setting_model.dart';
 import 'package:provider/provider.dart';
+
+import 'setting_model.dart';
 
 class SettingView extends StatelessWidget {
   @override
@@ -28,11 +29,8 @@ class SettingView extends StatelessWidget {
           builder: (context, model, child) {
             return Column(
               children: <Widget>[
-
-
                 // サイズ調整
                 SizedBox(height: size.height * 0.05),
-
 
                 // プロフィール設定
                 SizedBox(
@@ -75,10 +73,8 @@ class SettingView extends StatelessWidget {
                   ),
                 ),
 
-
                 // サイズ調整
                 SizedBox(height: size.height * 0.001),
-
 
                 // 通知設定
                 SizedBox(
@@ -120,8 +116,6 @@ class SettingView extends StatelessWidget {
                     ],
                   ),
                 ),
-
-
               ],
             );
           },
