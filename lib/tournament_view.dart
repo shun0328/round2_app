@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/setting_model.dart';
-import 'package:flutter_app/tournament_model.dart';
 import 'package:provider/provider.dart';
+
+import 'setting_model.dart';
+import 'tournament_model.dart';
 
 class TournamentView extends StatelessWidget {
   @override

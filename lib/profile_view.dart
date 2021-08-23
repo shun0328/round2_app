@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/profile_model.dart';
-import 'package:flutter_app/setting_model.dart';
 import 'package:provider/provider.dart';
+
+import 'profile_model.dart';
+import 'setting_model.dart';
 
 class ProfileView extends StatelessWidget {
   @override
@@ -98,17 +99,23 @@ class ProfileView extends StatelessWidget {
                   right: size.width * 0.15 +
                       (size.width * 0.40 - size.height * 0.1992),
                   top: size.height * 0.11,
-                  child: Container(
-                    width: size.width * 0.18,
-                    height: size.width * 0.18,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: AssetImage("images/profile.png"),
-                      ),
-                    ),
-                  ),
+                  child: InkWell(
+                      hoverColor: Colors.black54,
+                      onTap: () async {
+                        print("タップタップ");
+                        await model.showImagePicker();
+                      },
+                      child: Container(
+                        width: size.height * 0.08,
+                        height: size.height * 0.08,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: NetworkImage(model.imageURL),
+                          ),
+                        ),
+                      )),
                 ),
 
                 // プロフィール詳細

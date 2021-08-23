@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/setting_model.dart';
-import 'package:flutter_app/time_line_model.dart';
 import 'package:provider/provider.dart';
+
+import 'setting_model.dart';
+import 'time_line_model.dart';
 
 class TimeLineView extends StatelessWidget {
   @override
@@ -31,8 +32,6 @@ class TimeLineView extends StatelessWidget {
             return SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-
-
                   // 投稿01
                   Column(
                     children: <Widget>[
@@ -78,7 +77,6 @@ class TimeLineView extends StatelessWidget {
                     ],
                   ),
 
-
                   // 投稿02
                   Column(
                     children: <Widget>[
@@ -118,7 +116,6 @@ class TimeLineView extends StatelessWidget {
                     ],
                   ),
 
-
                   // 投稿03
                   Column(
                     children: <Widget>[
@@ -157,8 +154,6 @@ class TimeLineView extends StatelessWidget {
                       ),
                     ],
                   ),
-
-
                 ],
               ),
             );

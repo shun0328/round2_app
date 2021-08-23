@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/profile_view.dart';
-import 'package:flutter_app/setting_view.dart';
 
 import 'event_view.dart';
 import 'login_view.dart';
+import 'profile_view.dart';
+import 'setting_view.dart';
 import 'time_line_view.dart';
 
 void main() async {

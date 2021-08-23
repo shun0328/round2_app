@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/setting_model.dart';
 import 'package:provider/provider.dart';
 
 import 'create_user_view.dart';
 import 'login_model.dart';
 import 'main.dart';
+import 'setting_model.dart';
 
 class LoginView extends StatelessWidget {
   @override
