@@ -2,17 +2,19 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileModel extends ChangeNotifier {
-  final _userCollection = FirebaseFirestore.instance
-      .collection('users')
-      .where("email", isEqualTo: FirebaseAuth.instance.currentUser!.email!);
+  final _userCollection = FirebaseFirestore.instance.collection('users').where(
+      "email",
+      isEqualTo: FirebaseAuth.instance.currentUser?.email ?? '');
 
+  //
+  String documentId = '';
   // リングゲームオブジェクト
   Profile? profile;
-
   // ID
   String id = '';
   // 名前
@@ -48,11 +50,20 @@ class ProfileModel extends ChangeNotifier {
       '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n\n\n';
 
   late File imageFile;
-  final ImagePicker _picker = ImagePicker();
 
   Future showImagePicker() async {
-    XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    print("55");
+    final ImagePicker _picker = ImagePicker();
+    print("57");
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    print("59");
+    //final picker = ImagePicker();
+    //final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    //XFile? image = await picker.pickImage(source: ImageSource.gallery);
     imageFile = File(image!.path);
+
+    print(imageFile);
+    notifyListeners();
   }
 
   // データベースからプロフィール情報を受け取る関数
@@ -63,12 +74,15 @@ class ProfileModel extends ChangeNotifier {
     final List<Profile> profiles =
         snapshot.docs.map((DocumentSnapshot document) {
       Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+
+      documentId = document.id;
       id = data['id'];
       nickName = data['nickName'];
       rating = data['rating'];
       visitTime = data['visitTime'];
       point = data['point'];
       chip = data['chip'];
+      imageURL = data['imageURL'];
       return Profile(id, nickName, rating, visitTime, point, chip, imageURL);
     }).toList();
 
@@ -76,6 +90,31 @@ class ProfileModel extends ChangeNotifier {
 
     // 終わった事をviewに知らせる
     notifyListeners();
+  }
+
+  // usersテーブルの画像のurlを更新
+  void updateURL() async {
+    print('1');
+    final imageURL = await _uploadImage();
+    print('2');
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(documentId)
+        .update({
+      'imageURL': imageURL,
+    });
+    print('3');
+    notifyListeners();
+  }
+
+  Future<String> _uploadImage() async {
+    final storage = FirebaseStorage.instance;
+
+    TaskSnapshot snapshot =
+        await storage.ref().child("/$id").putFile(imageFile);
+
+    final String downloadUrl = await snapshot.ref.getDownloadURL();
+    return downloadUrl;
   }
 }
 

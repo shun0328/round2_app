@@ -182,7 +182,7 @@ class TournamentView extends StatelessWidget {
                                   },
                                 ),
                               ),
-                              SizedBox(width: 100),
+                              SizedBox(width: 40),
                               Icon(Icons.account_circle, size: 30.0),
                               Text(' 現在：'),
                               Text(model.tournaments?[i].member.length

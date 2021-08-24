@@ -104,6 +104,9 @@ class ProfileView extends StatelessWidget {
                       onTap: () async {
                         print("タップタップ");
                         await model.showImagePicker();
+                        print("test");
+                        model.updateURL();
+                        model.fetchProfile();
                       },
                       child: Container(
                         width: size.height * 0.08,
