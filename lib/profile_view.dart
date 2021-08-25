@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'main.dart';
 import 'profile_model.dart';
 import 'setting_model.dart';
 
@@ -106,7 +107,15 @@ class ProfileView extends StatelessWidget {
                         await model.showImagePicker();
                         print("test");
                         model.updateURL();
-                        model.fetchProfile();
+                        //model.fetchProfile();
+                        Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>
+                                HomePage(),
+                            transitionDuration: Duration(seconds: 0),
+                          ),
+                        );
                       },
                       child: Container(
                         width: size.height * 0.08,
