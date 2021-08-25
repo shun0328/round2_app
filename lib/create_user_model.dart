@@ -16,6 +16,9 @@ class CreateUserModel extends ChangeNotifier {
   // 入力したニックネーム
   String nickName = '';
 
+  String imageURL =
+      'https://firebasestorage.googleapis.com/v0/b/round2-fb.appspot.com/o/profile.png?alt=media&token=29684e3b-9544-44b1-948f-2d2d0349f900';
+
   // ランダムで6桁の文字列を作成する関数(衝突確率 1/308915776)
   // 戻り値の例： fgdidn, aktbxo
   idGenerator() {
@@ -68,6 +71,7 @@ class CreateUserModel extends ChangeNotifier {
       'chip': 0,
       'rating': 0,
       'id': idGenerator(),
+      'imageURL': imageURL,
     });
 
     notifyListeners();

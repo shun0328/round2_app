@@ -52,17 +52,10 @@ class ProfileModel extends ChangeNotifier {
   late File imageFile;
 
   Future showImagePicker() async {
-    print("55");
     final ImagePicker _picker = ImagePicker();
-    print("57");
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    print("59");
-    //final picker = ImagePicker();
-    //final pickedFile = await picker.getImage(source: ImageSource.gallery);
-    //XFile? image = await picker.pickImage(source: ImageSource.gallery);
     imageFile = File(image!.path);
 
-    print(imageFile);
     notifyListeners();
   }
 
@@ -94,9 +87,7 @@ class ProfileModel extends ChangeNotifier {
 
   // usersテーブルの画像のurlを更新
   void updateURL() async {
-    print('1');
     final imageURL = await _uploadImage();
-    print('2');
     await FirebaseFirestore.instance
         .collection('users')
         .doc(documentId)
