@@ -1,7 +1,6 @@
+import 'package:Round2/setting_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'setting_model.dart';
 
 class SettingView extends StatelessWidget {
   @override

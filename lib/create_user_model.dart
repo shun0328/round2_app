@@ -15,7 +15,7 @@ class CreateUserModel extends ChangeNotifier {
   String name = '';
   // 入力したニックネーム
   String nickName = '';
-
+  // デフォルトアイコン
   String imageURL =
       'https://firebasestorage.googleapis.com/v0/b/round2-fb.appspot.com/o/profile.png?alt=media&token=29684e3b-9544-44b1-948f-2d2d0349f900';
 
@@ -60,7 +60,7 @@ class CreateUserModel extends ChangeNotifier {
       password: password,
     );
 
-    // FireStoreに追加
+    // usersテーブルにuserを追加
     await FirebaseFirestore.instance.collection('users').add({
       'name': name,
       'nickName': nickName,

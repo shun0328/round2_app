@@ -2,11 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginModel extends ChangeNotifier {
-  // 入力したメールアドレス・パスワード
+  // 入力したメールアドレス
   String email = '';
+  // 入力したパスワード
   String password = '';
 
-  // Authenticationでログインを行う関数
+  // ログインを行う関数(Authentication)
   Future login() async {
     // メール・パスワードでログイン
     final FirebaseAuth auth = FirebaseAuth.instance;

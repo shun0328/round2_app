@@ -1,9 +1,8 @@
+import 'package:Round2/main.dart';
+import 'package:Round2/profile_model.dart';
+import 'package:Round2/setting_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'main.dart';
-import 'profile_model.dart';
-import 'setting_model.dart';
 
 class ProfileView extends StatelessWidget {
   @override
@@ -34,7 +33,7 @@ class ProfileView extends StatelessWidget {
         body: Consumer<ProfileModel>(
           builder: (context, model, child) {
             // ローディング画面
-            if (model.profile == null) {
+            if (model.profile == null && model.imageURL == '') {
               return Center(
                 child: CircularProgressIndicator(
                   valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
@@ -121,6 +120,7 @@ class ProfileView extends StatelessWidget {
                         width: size.height * 0.08,
                         height: size.height * 0.08,
                         decoration: BoxDecoration(
+                          color: Colors.black,
                           shape: BoxShape.circle,
                           image: DecorationImage(
                             fit: BoxFit.fill,

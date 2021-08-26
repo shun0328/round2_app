@@ -1,12 +1,11 @@
+import 'package:Round2/event_model.dart';
+import 'package:Round2/login_view.dart';
+import 'package:Round2/ring_game_view.dart';
+import 'package:Round2/setting_model.dart';
+import 'package:Round2/tournament_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'event_model.dart';
-import 'login_view.dart';
-import 'ring_game_view.dart';
-import 'setting_model.dart';
-import 'tournament_view.dart';
 
 class EventView extends StatelessWidget {
   @override
@@ -91,12 +90,12 @@ class EventView extends StatelessWidget {
                 // インスタグラムボタンの配置
                 Positioned(
                   left: size.width * 0.1,
-                  top: size.height * 0.44,
+                  top: size.height * 0.47,
                   width: size.width * 0.35,
-                  height: size.width * 0.22,
+                  height: size.width * 0.12,
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
+                      //borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
                         image: AssetImage(
                           'images/instagram.png',
@@ -106,7 +105,7 @@ class EventView extends StatelessWidget {
                     child: Material(
                       color: Colors.transparent,
                       child: InkWell(
-                        borderRadius: BorderRadius.circular(8.0),
+                        //borderRadius: BorderRadius.circular(8.0),
                         onTap: () {
                           model.launchInstagram();
                         },
@@ -118,12 +117,12 @@ class EventView extends StatelessWidget {
                 // ツイッターボタンの配置
                 Positioned(
                   left: size.width * 0.1,
-                  top: size.height * 0.55,
+                  top: size.height * 0.57,
                   width: size.width * 0.35,
-                  height: size.width * 0.22,
+                  height: size.width * 0.12,
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
+                      //borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
                         image: AssetImage(
                           'images/twitter.png',
@@ -133,7 +132,7 @@ class EventView extends StatelessWidget {
                     child: Material(
                       color: Colors.transparent,
                       child: InkWell(
-                        borderRadius: BorderRadius.circular(8.0),
+                        //borderRadius: BorderRadius.circular(8.0),
                         onTap: () async {
                           // ログアウト処理
                           // 内部で保持しているログイン情報等が初期化される
@@ -152,13 +151,13 @@ class EventView extends StatelessWidget {
 
                 // ラインボタンの配置
                 Positioned(
-                  top: size.height * 0.44,
+                  top: size.height * 0.47,
                   right: size.width * 0.1,
                   width: size.width * 0.35,
-                  height: size.width * 0.22,
+                  height: size.width * 0.12,
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
+                      //borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
                         image: AssetImage(
                           'images/line.png',
@@ -168,7 +167,7 @@ class EventView extends StatelessWidget {
                     child: Material(
                       color: Colors.transparent,
                       child: InkWell(
-                        borderRadius: BorderRadius.circular(8.0),
+                        //borderRadius: BorderRadius.circular(8.0),
                         onTap: () {
                           // ボタンを押した時の処理
                           model.launchLine();
@@ -180,13 +179,13 @@ class EventView extends StatelessWidget {
 
                 // フェイスブックボタンの配置
                 Positioned(
-                  top: size.height * 0.55,
+                  top: size.height * 0.57,
                   right: size.width * 0.1,
                   width: size.width * 0.35,
-                  height: size.width * 0.22,
+                  height: size.width * 0.12,
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
+                      //borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
                         image: AssetImage(
                           'images/facebook.png',
@@ -196,7 +195,7 @@ class EventView extends StatelessWidget {
                     child: Material(
                       color: Colors.transparent,
                       child: InkWell(
-                        borderRadius: BorderRadius.circular(8.0),
+                        //borderRadius: BorderRadius.circular(8.0),
                         onTap: () {
                           // ボタンを押した時の処理
                           model.launchFacebook();
