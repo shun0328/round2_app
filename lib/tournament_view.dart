@@ -1,8 +1,7 @@
+import 'package:Round2/setting_model.dart';
+import 'package:Round2/tournament_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'setting_model.dart';
-import 'tournament_model.dart';
 
 class TournamentView extends StatelessWidget {
   @override
@@ -12,9 +11,7 @@ class TournamentView extends StatelessWidget {
 
     // providerパターンでModelを使用
     return ChangeNotifierProvider<TournamentModel>(
-      create: (_) => TournamentModel()
-        ..fetchTournament()
-        ..fetchProfile(),
+      create: (_) => TournamentModel()..fetchTournament(),
       child: Scaffold(
         // 画面の背景色を設定
         backgroundColor: backGroundColor,

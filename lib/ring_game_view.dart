@@ -1,8 +1,7 @@
+import 'package:Round2/ring_game_model.dart';
+import 'package:Round2/setting_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'ring_game_model.dart';
-import 'setting_model.dart';
 
 class RingGameView extends StatelessWidget {
   @override

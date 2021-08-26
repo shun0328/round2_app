@@ -7,11 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileModel extends ChangeNotifier {
+  // usersテーブルの中からログイン中の
+  // メールアドレスと一致するuserを抽出
   final _userCollection = FirebaseFirestore.instance.collection('users').where(
       "email",
       isEqualTo: FirebaseAuth.instance.currentUser?.email ?? '');
 
-  //
+  // ドキュメントID
   String documentId = '';
   // リングゲームオブジェクト
   Profile? profile;
@@ -28,8 +30,9 @@ class ProfileModel extends ChangeNotifier {
   // チップ
   int chip = 0;
   // プロフィール画像
-  String imageURL =
-      'https://static.retrip.jp/spot/e5c7b040-2956-4104-9fc6-db6f498e63d7/images/2c147da2-0684-4ebb-abf1-731a5ef8a9a8_l.jpg';
+  String imageURL = '';
+  // プロフィール画像(変更時に使用)
+  late File imageFile;
 
   // プロフィール説明文
   final String sentence = 'レートの上がり方 \n'
@@ -49,13 +52,11 @@ class ProfileModel extends ChangeNotifier {
       '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜'
       '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜\n\n\n';
 
-  late File imageFile;
-
+  // フォトギャラリーから画像を選ぶための関数
   Future showImagePicker() async {
     final ImagePicker _picker = ImagePicker();
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     imageFile = File(image!.path);
-
     notifyListeners();
   }
 
@@ -98,6 +99,7 @@ class ProfileModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  // firebaseストレージに画像を保存する(ファイル名はID)
   Future<String> _uploadImage() async {
     final storage = FirebaseStorage.instance;
 

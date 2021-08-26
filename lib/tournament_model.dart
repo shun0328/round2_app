@@ -2,16 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'profile_model.dart';
-
 class TournamentModel extends ChangeNotifier {
   final _tournamentCollection =
       FirebaseFirestore.instance.collection('tournaments');
 
   // トーナメントオブジェクトのリスト
   List<Tournament>? tournaments;
-
-  ProfileModel profile = ProfileModel();
 
   // FireBaseからトーナメント情報を取得
   void fetchTournament() async {
@@ -44,10 +40,7 @@ class TournamentModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void fetchProfile() {
-    profile.fetchProfile();
-  }
-
+  // トーナメントをキャンセルするための関数
   void cancelTournament(tournament) async {
     String mail = await FirebaseAuth.instance.currentUser!.email!;
     List member = tournament.member;
@@ -66,12 +59,12 @@ class TournamentModel extends ChangeNotifier {
     });
   }
 
+  // トーナメントに参加するための関数
   void joinTournament(tournament) async {
+    // メンバーリスト(配列)に自分を追加
     List member = tournament.member;
     member.add(FirebaseAuth.instance.currentUser!.email!);
-    //print(member);
-    //print(tournament.id);
-    // FireStoreに追加
+    // FireStoreのデータをアップデート
     await FirebaseFirestore.instance
         .collection('tournaments')
         .doc(tournament.id)
