@@ -1,24 +1,76 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class TimeLineModel extends ChangeNotifier {
-  // テキスト01
-  final String text01 = '　ポーカーは、トランプを使って行うゲームのジャンルである。'
-      '心理戦を特徴とするゲームである。プレイヤー達は5枚の札でハンドを作って役の強さを競う。 '
-      'ギャンブルとしてプレイする場合は現金をチップに交換し、勝って獲得したチップが収入になる。'
-      '自らプレイを行いチップを獲得する。';
-  // テキスト02
-  final String text02 = '　ポーカーは、ハンドの強さを競うゲームである。'
-      '相手をフォールドさせれば（ゲームから降りさせれば）、'
-      'ハンドの強さに関わらず勝つことが出来ることから、'
-      'ブラフ（ハッタリ。ベットすることによって弱い手を強く見せて'
-      '相手をフォールドさせようとすること）に代表される'
-      '心理戦の占める割合の高いゲームであるとされる。';
-  // テキスト03
-  final String text03 =
-      '　勝ち負けの数にはあまり意味が無く、勝ったときのチップを大きくし、負けたときの損失を最小にするための総合的な戦術がより重要である。';
+  //final Stream<QuerySnapshot> _tweetsSream =
+  //FirebaseFirestore.instance.collection('users').snapshots();
+  final _tweetCollection = FirebaseFirestore.instance.collection('tweets');
 
-  // メソッド
-  void sampleMethod() {
+  // トーナメントオブジェクトのリスト
+  List<Tweet>? tweets;
+
+  void fetchTweet2(tweets) async {
+    for (int i = 0; i < tweets.length; i++) {
+      DocumentSnapshot snapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(tweets[0].userId)
+          .get();
+      tweets[i].userName = await snapshot['nickName'];
+      print(snapshot['nickName']);
+    }
+  }
+
+  // FireBaseからトーナメント情報を取得
+  void fetchTweet() async {
+    // データベースからデータを受け取る
+    final snapshot = await _tweetCollection.get();
+    // 受け取った情報からインスタンスを生成
+    final List<Tweet> tweets = snapshot.docs.map((DocumentSnapshot document) {
+      Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+      final String imageURL = data["imageURL"];
+      final String text = data['text'];
+      final String userId = data['userId'];
+      final String userName = 'a';
+      final String userImage = getImage(userId);
+
+      return Tweet(imageURL, text, userId, userName, userImage);
+    }).toList();
+    // ツイートオブジェクトのリストが完成
+    this.tweets = tweets;
+
+    fetchTweet2(this.tweets);
+
+    // 終わった事をviewに知らせる
     notifyListeners();
   }
+
+  // ドキュメントIDからユーザーの名前を取得する関数
+  String getName(userId) {
+    /*
+    DocumentSnapshot snapshot =
+        await FirebaseFirestore.instance.collection('users').doc(userId).get();
+    print(snapshot['nickName']);
+
+     */
+
+    notifyListeners();
+
+    return 'a';
+  }
+
+  // ドキュメントIDからユーザーの画像を取得する関数
+  String getImage(userId) {
+    return 'https://firebasestorage.googleapis.com/v0/b/round2-fb.appspot.com/o/profile.png?alt=media&token=29684e3b-9544-44b1-948f-2d2d0349f900';
+  }
+}
+
+// tweet object
+class Tweet {
+  // constructor
+  Tweet(this.imageURL, this.text, this.userId, this.userName, this.userImage);
+  String imageURL;
+  String text;
+  String userId;
+  String userName;
+  String userImage;
 }

@@ -11,7 +11,7 @@ class TimeLineView extends StatelessWidget {
 
     // providerパターンでModelを使用
     return ChangeNotifierProvider<TimeLineModel>(
-      create: (_) => TimeLineModel(),
+      create: (_) => TimeLineModel()..fetchTweet(),
       child: Scaffold(
         // 画面の背景色を設定
         backgroundColor: backGroundColor,
@@ -28,134 +28,68 @@ class TimeLineView extends StatelessWidget {
         // bodyの設定
         body: Consumer<TimeLineModel>(
           builder: (context, model, child) {
-            return SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  // 投稿01
-                  Column(
-                    children: <Widget>[
-                      Container(
-                        width: size.width,
-                        color: Colors.white,
-                        margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                        padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
-                        child: Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-                              width: 50.0,
-                              height: 50.0,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  fit: BoxFit.fill,
-                                  image: AssetImage("images/profile.png"),
+            // ローディング画面
+            if (model.tweets == null) {
+              return Center(
+                child: CircularProgressIndicator(
+                  valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              );
+            } else {
+              return SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    // 投稿01
+                    Column(
+                      children: <Widget>[
+                        Container(
+                          width: size.width,
+                          color: Colors.white,
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                          padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                          child: Row(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
+                                width: 50.0,
+                                height: 50.0,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: NetworkImage(
+                                        'https://firebasestorage.googleapis.com/v0/b/round2-fb.appspot.com/o/profile.png?alt=media&token=29684e3b-9544-44b1-948f-2d2d0349f900'),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Text('REONA'),
-                          ],
+                              Text(model.tweets![0].userName),
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        color: Colors.white,
-                        margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                        child: Image.asset('images/trump.png'),
-                      ),
-                      Container(
-                        color: Colors.white,
-                        margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
-                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                        child: Text(
-                          model.text01,
-                          style: TextStyle(fontSize: 15),
-                          overflow: TextOverflow.visible,
+                        Container(
+                          color: Colors.white,
+                          margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: Image(
+                              image: NetworkImage(model.tweets![0].imageURL)),
+                          width: double.infinity,
                         ),
-                      ),
-                    ],
-                  ),
-
-                  // 投稿02
-                  Column(
-                    children: <Widget>[
-                      Container(
-                        width: size.width,
-                        color: Colors.white,
-                        margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                        padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
-                        child: Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-                              width: 50.0,
-                              height: 50.0,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  fit: BoxFit.fill,
-                                  image: AssetImage("images/profile.png"),
-                                ),
-                              ),
-                            ),
-                            Text('REONA'),
-                          ],
+                        Container(
+                          color: Colors.white,
+                          margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: Text(
+                            model.tweets![0].text,
+                            style: TextStyle(fontSize: 15),
+                            overflow: TextOverflow.visible,
+                          ),
                         ),
-                      ),
-                      Container(
-                        color: Colors.white,
-                        margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
-                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                        child: Text(
-                          model.text02,
-                          style: TextStyle(fontSize: 15),
-                          overflow: TextOverflow.visible,
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  // 投稿03
-                  Column(
-                    children: <Widget>[
-                      Container(
-                        width: size.width,
-                        color: Colors.white,
-                        margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                        padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
-                        child: Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-                              width: 50.0,
-                              height: 50.0,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  fit: BoxFit.fill,
-                                  image: AssetImage("images/profile.png"),
-                                ),
-                              ),
-                            ),
-                            Text('REONA'),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        color: Colors.white,
-                        margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
-                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                        child: Text(
-                          model.text03,
-                          style: TextStyle(fontSize: 15),
-                          overflow: TextOverflow.visible,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            );
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            }
           },
         ),
       ),
