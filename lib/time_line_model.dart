@@ -30,15 +30,15 @@ class TimeLineModel extends ChangeNotifier {
       final String imageURL = data["imageURL"];
       final String text = data['text'];
       final String userId = data['userId'];
-      final String userName = 'a';
-      final String userImage = getImage(userId);
+      final String userName = data['userName'];
+      final String userImage = data['userImage'];
+
+      print(data['user']);
 
       return Tweet(imageURL, text, userId, userName, userImage);
     }).toList();
     // ツイートオブジェクトのリストが完成
     this.tweets = tweets;
-
-    fetchTweet2(this.tweets);
 
     // 終わった事をviewに知らせる
     notifyListeners();

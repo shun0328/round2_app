@@ -58,7 +58,7 @@ class TimeLineView extends StatelessWidget {
                                   image: DecorationImage(
                                     fit: BoxFit.fill,
                                     image: NetworkImage(
-                                        'https://firebasestorage.googleapis.com/v0/b/round2-fb.appspot.com/o/profile.png?alt=media&token=29684e3b-9544-44b1-948f-2d2d0349f900'),
+                                        model.tweets![0].userImage),
                                   ),
                                 ),
                               ),
