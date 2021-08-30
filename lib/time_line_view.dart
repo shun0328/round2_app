@@ -1,5 +1,6 @@
 import 'package:Round2/setting_model.dart';
 import 'package:Round2/time_line_model.dart';
+import 'package:Round2/tweet_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -53,7 +54,7 @@ class TimeLineView extends StatelessWidget {
                       list.add(
                         Column(
                           children: <Widget>[
-                            // 投稿01
+                            // 投稿内容
                             Column(
                               children: <Widget>[
                                 Container(
@@ -66,8 +67,8 @@ class TimeLineView extends StatelessWidget {
                                       Container(
                                         margin:
                                             EdgeInsets.fromLTRB(0, 0, 15, 0),
-                                        width: 50.0,
-                                        height: 50.0,
+                                        width: size.height * 0.06,
+                                        height: size.height * 0.06,
                                         decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                           image: DecorationImage(
@@ -82,14 +83,29 @@ class TimeLineView extends StatelessWidget {
                                   ),
                                 ),
 
+                                Container(
+                                  width: double.infinity,
+                                  color: Colors.white,
+                                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                  padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                                  child: Text(
+                                    model.tweets![i].text,
+                                    style: TextStyle(fontSize: 15),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+
                                 // 画像があれば画像を表示
                                 (() {
                                   if (model.tweets![i].imageURL == '') {
-                                    return SizedBox();
+                                    return SizedBox(
+                                      height: 10,
+                                    );
                                   } else {
                                     return Container(
                                       color: Colors.white,
-                                      margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                      margin:
+                                          EdgeInsets.fromLTRB(10, 0, 10, 10),
                                       padding:
                                           EdgeInsets.fromLTRB(20, 10, 20, 10),
                                       child: Image(
@@ -99,17 +115,6 @@ class TimeLineView extends StatelessWidget {
                                     );
                                   }
                                 })(),
-
-                                Container(
-                                  color: Colors.white,
-                                  margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
-                                  padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                                  child: Text(
-                                    model.tweets![i].text,
-                                    style: TextStyle(fontSize: 15),
-                                    overflow: TextOverflow.visible,
-                                  ),
-                                ),
                               ],
                             ),
                           ],
@@ -124,13 +129,23 @@ class TimeLineView extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: size.height * 0.68,
-              left: size.width * 0.78,
+              top: size.height * 0.66,
+              left: size.width * 0.75,
               child: IconButton(
-                iconSize: size.height * 0.07,
+                iconSize: size.height * 0.1,
                 icon: const Icon(Icons.add_circle),
                 color: Colors.lightBlue,
-                onPressed: () {},
+                onPressed: () {
+                  // 画面遷移
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation1, animation2) =>
+                          TweetView(),
+                      transitionDuration: Duration(seconds: 0),
+                    ),
+                  );
+                },
               ),
             ),
           ],

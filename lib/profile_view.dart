@@ -102,9 +102,9 @@ class ProfileView extends StatelessWidget {
                   child: InkWell(
                       hoverColor: Colors.black54,
                       onTap: () async {
-                        print("タップタップ");
+                        //print("タップタップ");
                         await model.showImagePicker();
-                        print("test");
+                        //print("test");
                         model.updateURL();
                         //model.fetchProfile();
                         Navigator.pushReplacement(
