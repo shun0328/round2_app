@@ -1,6 +1,7 @@
 import 'package:Round2/setting_model.dart';
 import 'package:Round2/time_line_model.dart';
 import 'package:Round2/tweet_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,9 +20,31 @@ class TimeLineView extends StatelessWidget {
 
         // headerの設定
         appBar: AppBar(
-          title: const Text(
-            'タイムライン',
-            style: TextStyle(color: Colors.black),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'タイムライン',
+                style: TextStyle(color: Colors.black),
+              ),
+              /*
+              IconButton(
+                icon: Icon(Icons.add, color: Colors.lightBlue),
+                onPressed: () {
+                  // 画面遷移
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation1, animation2) =>
+                          TweetView(),
+                      transitionDuration: Duration(seconds: 0),
+                    ),
+                  );
+                },
+              )
+
+               */
+            ],
           ),
           backgroundColor: Colors.white,
         ),
@@ -79,6 +102,28 @@ class TimeLineView extends StatelessWidget {
                                         ),
                                       ),
                                       Text(model.tweets![i].userName),
+                                      Expanded(child: SizedBox()),
+                                      (() {
+                                        if (model.tweets![i].userUID ==
+                                            FirebaseAuth
+                                                .instance.currentUser!.uid) {
+                                          return IconButton(
+                                            padding: EdgeInsets.fromLTRB(
+                                                0, 0, 15, 0),
+                                            color: Colors.redAccent,
+                                            onPressed: () {
+                                              // ツイートを削除
+                                              model.deleteTweet(
+                                                  model.tweets![i].docId);
+                                              //
+                                            },
+                                            icon: const Icon(
+                                                Icons.delete_forever),
+                                          );
+                                        } else {
+                                          return SizedBox();
+                                        }
+                                      }()),
                                     ],
                                   ),
                                 ),
