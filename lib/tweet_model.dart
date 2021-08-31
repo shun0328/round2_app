@@ -17,6 +17,8 @@ class TweetModel extends ChangeNotifier {
 
   String? userImage;
 
+  String? userId;
+
   // フォトギャラリーから画像を選ぶための関数
   Future showImagePicker() async {
     final ImagePicker _picker = ImagePicker();
@@ -26,7 +28,8 @@ class TweetModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future getName() async {
+  // ユーザーの情報を受け取る関数
+  Future getUserInfo() async {
     // メールアドレスと一致するuserを抽出
     final _userCollection = FirebaseFirestore.instance
         .collection('users')
@@ -39,16 +42,17 @@ class TweetModel extends ChangeNotifier {
       Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
       userName = data['nickName'];
       userImage = data['imageURL'];
-      return UserData(userName!, userImage!);
+      userId = data['id'];
+      return UserData(userName!, userImage!, userId!);
     }).toList();
 
-    return [userName, userImage];
+    return [userName, userImage, userId];
   }
 
   // ツイート内容をデータベースに保存
 // 入力した情報をデータベースに格納する関数
   Future addTweet() async {
-    final userinfo = await getName();
+    final userinfo = await getUserInfo();
 
     // 不備があったらエラーを返す
     if (text == null) {
@@ -66,8 +70,10 @@ class TweetModel extends ChangeNotifier {
     await FirebaseFirestore.instance.collection('tweets').add({
       'imageURL': imageURL,
       'text': text,
-      'userImage': userinfo[1],
       'userName': userinfo[0],
+      'userImage': userinfo[1],
+      'userId': userinfo[2],
+      'userUID': FirebaseAuth.instance.currentUser!.uid,
     });
 
     notifyListeners();
@@ -106,16 +112,18 @@ class TweetModel extends ChangeNotifier {
 // tweet object
 class Tweet {
   // constructor
-  Tweet(this.imageURL, this.text, this.userName, this.userImage);
+  Tweet(this.imageURL, this.text, this.userName, this.userImage, this.userUID);
   String imageURL;
   String text;
   String userName;
   String userImage;
+  String userUID;
 }
 
 class UserData {
   // constructor
-  UserData(this.name, this.imageURL);
+  UserData(this.name, this.imageURL, this.userId);
   String name;
   String imageURL;
+  String userId;
 }
