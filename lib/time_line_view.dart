@@ -176,21 +176,28 @@ class TimeLineView extends StatelessWidget {
             Positioned(
               top: size.height * 0.66,
               left: size.width * 0.75,
-              child: IconButton(
-                iconSize: size.height * 0.1,
-                icon: const Icon(Icons.add_circle),
-                color: Colors.lightBlue,
-                onPressed: () {
-                  // 画面遷移
-                  Navigator.push(
-                    context,
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation1, animation2) =>
-                          TweetView(),
-                      transitionDuration: Duration(seconds: 0),
-                    ),
-                  );
-                },
+              child: CircleAvatar(
+                radius: size.height * 0.04,
+                backgroundColor: Colors.lightBlue,
+                child: IconButton(
+                  padding: EdgeInsets.fromLTRB(0.1, 0.1, 0.1, 0.1),
+                  icon: Icon(
+                    Icons.add,
+                    size: size.height * 0.05,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    // 画面遷移
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation1, animation2) =>
+                            TweetView(),
+                        transitionDuration: Duration(seconds: 0),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ],
