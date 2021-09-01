@@ -74,6 +74,7 @@ class TweetModel extends ChangeNotifier {
       'userImage': userinfo[1],
       'userId': userinfo[2],
       'userUID': FirebaseAuth.instance.currentUser!.uid,
+      'timeStamp': DateTime.now(),
     });
 
     notifyListeners();
