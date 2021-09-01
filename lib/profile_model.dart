@@ -34,6 +34,8 @@ class ProfileModel extends ChangeNotifier {
   // プロフィール画像(変更時に使用)
   late File imageFile;
 
+  Image? hoge;
+
   // プロフィール説明文
   final String sentence = 'レートの上がり方 \n'
       '〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜'
