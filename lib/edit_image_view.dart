@@ -12,7 +12,7 @@ class EditImageView extends StatelessWidget {
 
     // providerパターンでModelを使用
     return ChangeNotifierProvider<EditImageModel>(
-      create: (_) => EditImageModel(),
+      create: (_) => EditImageModel()..fetchProfile(),
       child: Scaffold(
         // 画面の背景色を設定
         backgroundColor: backGroundColor,
@@ -35,17 +35,30 @@ class EditImageView extends StatelessWidget {
                 Container(
                   child: InkWell(
                       hoverColor: Colors.black54,
-                      onTap: () async {},
+                      onTap: () async {
+                        await model.showImagePicker();
+                        model.updateURL();
+                      },
                       child: Container(
                         width: size.width * 0.4,
                         height: size.width * 0.4,
                         decoration: BoxDecoration(
                           color: Colors.black,
                           shape: BoxShape.circle,
-                          image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(model.imageURL),
-                          ),
+                          image: (() {
+                            if (model.imageURL == null) {
+                              return DecorationImage(
+                                fit: BoxFit.fill,
+                                image: NetworkImage(
+                                    'https://firebasestorage.googleapis.com/v0/b/round2-fb.appspot.com/o/profile.png?alt=media&token=29684e3b-9544-44b1-948f-2d2d0349f900'),
+                              );
+                            } else {
+                              return DecorationImage(
+                                fit: BoxFit.fill,
+                                image: NetworkImage(model.imageURL!),
+                              );
+                            }
+                          }()),
                         ),
                       )),
                 ),
@@ -63,7 +76,11 @@ class EditImageView extends StatelessWidget {
                       primary: Colors.lightBlue,
                       onPrimary: Colors.white,
                     ),
-                    onPressed: () async {},
+                    onPressed: () async {
+                      //model.fetchProfile();
+                      // 画面遷移
+                      Navigator.of(context).pop();
+                    },
                   ),
                 ),
               ],
