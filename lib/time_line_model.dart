@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class TimeLineModel extends ChangeNotifier {
-  final _tweetCollection = FirebaseFirestore.instance.collection('tweets');
+  final _tweetCollection = FirebaseFirestore.instance
+      .collection('tweets')
+      .orderBy('timeStamp', descending: true);
 
   // トーナメントオブジェクトのリスト
   List<Tweet>? tweets;
