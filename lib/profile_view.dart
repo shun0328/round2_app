@@ -1,4 +1,3 @@
-import 'package:Round2/main.dart';
 import 'package:Round2/profile_model.dart';
 import 'package:Round2/setting_model.dart';
 import 'package:flutter/material.dart';
@@ -99,35 +98,18 @@ class ProfileView extends StatelessWidget {
                   right: size.width * 0.15 +
                       (size.width * 0.40 - size.height * 0.1992),
                   top: size.height * 0.11,
-                  child: InkWell(
-                      hoverColor: Colors.black54,
-                      onTap: () async {
-                        //print("タップタップ");
-                        await model.showImagePicker();
-                        //print("test");
-                        model.updateURL();
-                        //model.fetchProfile();
-                        Navigator.pushReplacement(
-                          context,
-                          PageRouteBuilder(
-                            pageBuilder: (context, animation1, animation2) =>
-                                HomePage(),
-                            transitionDuration: Duration(seconds: 0),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        width: size.height * 0.08,
-                        height: size.height * 0.08,
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(model.imageURL),
-                          ),
-                        ),
-                      )),
+                  child: Container(
+                    width: size.height * 0.08,
+                    height: size.height * 0.08,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: NetworkImage(model.imageURL),
+                      ),
+                    ),
+                  ),
                 ),
 
                 // プロフィール詳細
