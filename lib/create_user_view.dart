@@ -24,6 +24,7 @@ class CreateUserView extends StatelessWidget {
             // 真ん中に配置(縦方向)
             return Center(
               child: Container(
+                // 色を設定
                 color: Colors.white,
                 // 外側の間隔を調整
                 margin: EdgeInsets.fromLTRB(
@@ -38,8 +39,8 @@ class CreateUserView extends StatelessWidget {
                     children: <Widget>[
                       // テキスト'会員登録'の配置
                       Container(
-                        margin: EdgeInsets.fromLTRB(
-                            0, size.height * 0.04, 0, size.height * 0.03),
+                        margin:
+                            EdgeInsets.fromLTRB(0, size.height * 0.04, 0, 0),
                         child: Text(
                           "会員登録",
                           style: TextStyle(
@@ -51,7 +52,7 @@ class CreateUserView extends StatelessWidget {
                       // お名前入力フォームの配置
                       Container(
                         margin:
-                            EdgeInsets.fromLTRB(0, 0, 0, size.height * 0.03),
+                            EdgeInsets.fromLTRB(0, size.height * 0.03, 0, 0),
                         height: size.height * 0.05,
                         child: TextField(
                           decoration: InputDecoration(
@@ -75,7 +76,7 @@ class CreateUserView extends StatelessWidget {
                       // ニックネーム入力フォームの配置
                       Container(
                         margin:
-                            EdgeInsets.fromLTRB(0, 0, 0, size.height * 0.03),
+                            EdgeInsets.fromLTRB(0, size.height * 0.03, 0, 0),
                         height: size.height * 0.05,
                         child: TextField(
                           decoration: InputDecoration(
@@ -99,7 +100,7 @@ class CreateUserView extends StatelessWidget {
                       // メールアドレス入力フォームの配置
                       Container(
                         margin:
-                            EdgeInsets.fromLTRB(0, 0, 0, size.height * 0.03),
+                            EdgeInsets.fromLTRB(0, size.height * 0.03, 0, 0),
                         height: size.height * 0.05,
                         child: TextField(
                           decoration: InputDecoration(
@@ -123,7 +124,7 @@ class CreateUserView extends StatelessWidget {
                       // パスワード入力フォームの配置
                       Container(
                         margin:
-                            EdgeInsets.fromLTRB(0, 0, 0, size.height * 0.03),
+                            EdgeInsets.fromLTRB(0, size.height * 0.03, 0, 0),
                         height: size.height * 0.05,
                         child: TextField(
                           obscureText: true,
@@ -147,6 +148,8 @@ class CreateUserView extends StatelessWidget {
 
                       // 確認用パスワード入力フォームの配置
                       Container(
+                        margin:
+                            EdgeInsets.fromLTRB(0, size.height * 0.03, 0, 0),
                         height: size.height * 0.05,
                         child: TextField(
                           obscureText: true,
@@ -199,7 +202,7 @@ class CreateUserView extends StatelessWidget {
                             try {
                               // 新規ユーザ登録
                               await model.addUser();
-                              // ユーザ登録が成功したら登録完了の表示＆画面遷移
+                              // ユーザ登録が成功したら登録完了の表示
                               final snackBar = SnackBar(content: Text("登録完了"));
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
@@ -210,9 +213,15 @@ class CreateUserView extends StatelessWidget {
                                 }),
                               );
                             } catch (e) {
-                              // 登録に失敗したらエラーの表示
+                              // 登録に失敗した時の処理↓
+
+                              // エラー分を翻訳
+                              String errorMessage =
+                                  model.translateError(e.toString());
+
+                              // エラーの表示
                               final snackBar =
-                                  SnackBar(content: Text(e.toString()));
+                                  SnackBar(content: Text(errorMessage));
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
                             }
