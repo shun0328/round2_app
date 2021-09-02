@@ -53,7 +53,7 @@ class TimeLineModel extends ChangeNotifier {
     // メールアドレスと一致するuserを抽出
     final _userCollection = FirebaseFirestore.instance
         .collection('users')
-        .where("id", isEqualTo: tweets![i].userId ?? '');
+        .where("id", isEqualTo: tweets![i].userId);
     // データベースからデータを受け取る
     final snapshot = await _userCollection.get();
     // 受け取った情報からインスタンスを生成

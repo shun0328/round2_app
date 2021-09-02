@@ -2,16 +2,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class TournamentModel extends ChangeNotifier {
-  final _tournamentCollection =
-      FirebaseFirestore.instance.collection('tournaments');
+/*
+テーブル[tournaments]
+number  buyIn
+string  date
+string  entry
+string  lateRegistration
+array   member
+number  reBuy
+number  stack
+string  structure
+string  tournamentName
+*/
 
+class TournamentModel extends ChangeNotifier {
   // トーナメントオブジェクトのリスト
   List<Tournament>? tournaments;
 
-  // FireBaseからトーナメント情報を取得
+  // FireBaseからトーナメント情報を取得する関数
   void fetchTournament() async {
     // データベースからデータを受け取る
+    final _tournamentCollection =
+        FirebaseFirestore.instance.collection('tournaments');
     final snapshot = await _tournamentCollection.get();
 
     // 受け取った情報からインスタンスを生成
@@ -27,10 +39,9 @@ class TournamentModel extends ChangeNotifier {
       final int reBuy = data['reBuy'];
       final int stack = data['stack'];
       final String structure = data['structure'];
-      final int numMember = data['numMember'];
       final List member = data['member'];
       return Tournament(id, tournamentName, date, entry, lateRegistration,
-          buyIn, reBuy, stack, structure, numMember, member);
+          buyIn, reBuy, stack, structure, member);
     }).toList();
 
     // トーナメントオブジェクトのリストが完成
@@ -42,21 +53,27 @@ class TournamentModel extends ChangeNotifier {
 
   // トーナメントをキャンセルするための関数
   void cancelTournament(tournament) async {
-    String mail = await FirebaseAuth.instance.currentUser!.email!;
+    // ログイン情報からメールアドレスを取得
+    String mail = FirebaseAuth.instance.currentUser!.email!;
+    // メンバー一覧（配列）を取得
     List member = tournament.member;
-
+    // 配列の中に自分のアドレスが入っていたら削除
     for (var i = 0; i < member.length; i++) {
       if (member[i] == mail) {
         member.removeAt(i);
         i--;
       }
     }
+    // 修正したメンバー一覧（配列）をデータベースに更新
     await FirebaseFirestore.instance
         .collection('tournaments')
         .doc(tournament.id)
         .update({
       'member': member,
     });
+    // ローカルの情報も更新
+    tournament.joined = false;
+    notifyListeners();
   }
 
   // トーナメントに参加するための関数
@@ -71,6 +88,9 @@ class TournamentModel extends ChangeNotifier {
         .update({
       'member': member,
     });
+    // ローカルの情報も更新
+    tournament.joined = true;
+    notifyListeners();
   }
 }
 
@@ -87,7 +107,6 @@ class Tournament {
       this.reBuy,
       this.stack,
       this.structure,
-      this.numMember,
       this.member);
   String id;
   String tournamentName;
@@ -98,12 +117,11 @@ class Tournament {
   int reBuy;
   int stack;
   String structure;
-  int numMember;
   List member;
   bool joined = false;
 
+  // メンバー 一覧に自分のIDが入っていたらtrueを返す
   bool isJoined() {
-    // メンバー 一覧に自分のIDが入っていたらtrueを返す
     for (var i = 0; i < member.length; i++) {
       if (member[i] == FirebaseAuth.instance.currentUser!.email!) {
         return true;
