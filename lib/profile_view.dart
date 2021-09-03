@@ -146,7 +146,7 @@ class ProfileView extends StatelessWidget {
                             child: Container(
                               padding: EdgeInsets.fromLTRB(40, 40, 40, 40),
                               height: size.height * 0.9,
-                              child: Text(model.sentence!),
+                              child: Text(model.sentence),
                             ),
                           );
                         },
