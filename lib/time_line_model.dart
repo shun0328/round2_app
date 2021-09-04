@@ -7,8 +7,6 @@ string    imageURL
 string    text
 timestamp timeStamp
 string    userID
-string    userImage
-string    userName
 string    userUID
 */
 
@@ -34,7 +32,7 @@ class TimeLineModel extends ChangeNotifier {
       final String imageURL = data["imageURL"];
       final String text = data['text'];
       final String userUID = data['userUID'];
-      final String userName = data['userName'];
+      final String userName = '';
       final String userImage =
           'https://firebasestorage.googleapis.com/v0/b/round2-fb.appspot.com/o/profile.png?alt=media&token=29684e3b-9544-44b1-948f-2d2d0349f900';
       final String userId = data['userId'];
