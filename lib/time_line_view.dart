@@ -59,94 +59,90 @@ class TimeLineView extends StatelessWidget {
               // 最後にWidgetのリスト"list"を使って画面を構成する
               List<Widget> list = [];
 
-              // RingGameオブジェクトを元にレイアウトを行う
+              // Tweetオブジェクトを元にレイアウトを行う
               for (var i = 0; i < model.tweets!.length; i++) {
                 list.add(
                   Column(
                     children: <Widget>[
-                      // 投稿内容
-                      Column(
-                        children: <Widget>[
-                          Container(
-                            width: size.width,
-                            color: Colors.white,
-                            margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                            padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
-                            child: Row(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-                                  width: size.height * 0.06,
-                                  height: size.height * 0.06,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image: NetworkImage(
-                                          model.tweets![i].userImage),
-                                    ),
-                                  ),
+                      Container(
+                        width: size.width,
+                        color: Colors.white,
+                        margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                        padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                        child: Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
+                              width: size.height * 0.05,
+                              height: size.height * 0.05,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image:
+                                      NetworkImage(model.tweets![i].userImage),
                                 ),
-                                Text(model.tweets![i].userId),
-                                (() {
-                                  model.getName(i);
-                                  return SizedBox();
-                                }()),
-                                Expanded(child: SizedBox()),
-                                (() {
-                                  if (model.tweets![i].userUID ==
-                                      FirebaseAuth.instance.currentUser!.uid) {
-                                    return IconButton(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 15, 0),
-                                      color: Colors.redAccent,
-                                      onPressed: () {
-                                        // ツイートを削除
-                                        model.deleteTweet(
-                                            model.tweets![i].docId);
-                                        //
-                                      },
-                                      icon: const Icon(Icons.delete_forever),
-                                    );
-                                  } else {
-                                    return SizedBox();
-                                  }
-                                }()),
-                              ],
+                              ),
                             ),
-                          ),
-
-                          Container(
-                            width: double.infinity,
-                            color: Colors.white,
-                            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                            child: Text(
-                              model.tweets![i].text,
-                              style: TextStyle(fontSize: 15),
-                              overflow: TextOverflow.visible,
-                            ),
-                          ),
-
-                          // 画像があれば画像を表示
-                          (() {
-                            if (model.tweets![i].imageURL == '') {
-                              return SizedBox(
-                                height: 10,
-                              );
-                            } else {
-                              return Container(
-                                color: Colors.white,
-                                margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
-                                padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                                child: Image(
-                                    image: NetworkImage(
-                                        model.tweets![i].imageURL)),
-                                width: double.infinity,
-                              );
-                            }
-                          })(),
-                        ],
+                            Text(model.tweets![i].userId),
+                            (() {
+                              // ユーザ名とプロフィール画像を取得
+                              if (model.count < model.tweets!.length) {
+                                model.getUserInfo(i);
+                              }
+                              return SizedBox();
+                            }()),
+                            Expanded(child: SizedBox()),
+                            (() {
+                              if (model.tweets![i].userUID ==
+                                  FirebaseAuth.instance.currentUser!.uid) {
+                                return IconButton(
+                                  padding: EdgeInsets.fromLTRB(0, 0, 15, 0),
+                                  color: Colors.redAccent,
+                                  onPressed: () {
+                                    // ツイートを削除
+                                    model.deleteTweet(model.tweets![i].docId);
+                                  },
+                                  icon: const Icon(Icons.delete_forever),
+                                );
+                              } else {
+                                return SizedBox();
+                              }
+                            }()),
+                          ],
+                        ),
                       ),
+
+                      // テキストを表示
+                      Container(
+                        width: double.infinity,
+                        color: Colors.white,
+                        margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        child: Text(
+                          model.tweets![i].text,
+                          style: TextStyle(fontSize: 15),
+                          overflow: TextOverflow.visible,
+                        ),
+                      ),
+
+                      // 画像があれば画像を表示
+                      (() {
+                        if (model.tweets![i].imageURL == '') {
+                          return SizedBox(
+                            height: 10,
+                          );
+                        } else {
+                          return Container(
+                            color: Colors.white,
+                            margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                            child: Image(
+                                image: NetworkImage(model.tweets![i].imageURL)),
+                            width: double.infinity,
+                          );
+                        }
+                      })(),
                     ],
                   ),
                 );

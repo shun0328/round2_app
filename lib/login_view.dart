@@ -21,20 +21,26 @@ class LoginView extends StatelessWidget {
         // bodyの設定
         body: Consumer<LoginModel>(
           builder: (context, model, child) {
+            // 真ん中に配置(縦方向)
             return Center(
               child: Container(
+                // 色を設定
                 color: Colors.white,
+                // 外側の間隔を調整
                 margin: EdgeInsets.fromLTRB(
                     size.width * 0.05, 0, size.width * 0.05, 0),
+                // 内側の間隔を調整
                 padding: EdgeInsets.fromLTRB(
                     size.width * 0.1, 0, size.width * 0.1, size.height * 0.02),
+
+                // スクロールするためのウィジェット
                 child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
                       // テキスト'ログイン'の配置
                       Container(
-                        margin: EdgeInsets.fromLTRB(
-                            0, size.height * 0.04, 0, size.height * 0.04),
+                        margin:
+                            EdgeInsets.fromLTRB(0, size.height * 0.04, 0, 0),
                         child: Text(
                           "ログイン",
                           style: TextStyle(
@@ -44,50 +50,56 @@ class LoginView extends StatelessWidget {
                       ),
 
                       // メールアドレス入力フォームの配置
-                      TextField(
-                        decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.black,
+                      Container(
+                        margin:
+                            EdgeInsets.fromLTRB(0, size.height * 0.04, 0, 0),
+                        child: TextField(
+                          decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                ),
                               ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.lightBlueAccent,
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.lightBlueAccent,
+                                ),
                               ),
-                            ),
-                            labelText: 'メールアドレス'),
-                        onChanged: (String value) {
-                          model.email = value;
-                        },
+                              labelText: 'メールアドレス'),
+                          onChanged: (String value) {
+                            model.email = value;
+                          },
+                        ),
                       ),
 
-                      SizedBox(height: size.height * 0.03),
-
                       // パスワード入力フォームの配置
-                      TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.black,
+                      Container(
+                        margin:
+                            EdgeInsets.fromLTRB(0, size.height * 0.03, 0, 0),
+                        child: TextField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.black,
+                                ),
                               ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.lightBlueAccent,
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.lightBlueAccent,
+                                ),
                               ),
-                            ),
-                            labelText: 'パスワード'),
-                        onChanged: (String value) {
-                          model.password = value;
-                        },
+                              labelText: 'パスワード'),
+                          onChanged: (String value) {
+                            model.password = value;
+                          },
+                        ),
                       ),
 
                       // ログインボタンの配置
                       Container(
-                        margin: EdgeInsets.fromLTRB(
-                            0, size.height * 0.03, 0, size.height * 0.04),
+                        margin:
+                            EdgeInsets.fromLTRB(0, size.height * 0.03, 0, 0),
                         width: double.infinity,
                         height: size.height * 0.065,
                         // ログイン登録ボタン
@@ -109,9 +121,14 @@ class LoginView extends StatelessWidget {
                                 }),
                               );
                             } catch (e) {
-                              // ログインに失敗した場合->エラーの表示
+                              // ログインに失敗した時の処理↓
+                              // エラー分を翻訳
+                              String errorMessage =
+                                  model.translateError(e.toString());
+
+                              // エラーの表示
                               final snackBar =
-                                  SnackBar(content: Text(e.toString()));
+                                  SnackBar(content: Text(errorMessage));
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
                             }
@@ -119,30 +136,39 @@ class LoginView extends StatelessWidget {
                         ),
                       ),
 
-                      TextButton(
-                        child: Text('会員登録はこちら'),
-                        style: TextButton.styleFrom(
-                          textStyle: TextStyle(fontSize: 13),
-                          primary: Colors.grey,
+                      // テキストボタン'会員登録はこちら'を配置
+                      Container(
+                        margin:
+                            EdgeInsets.fromLTRB(0, size.height * 0.03, 0, 0),
+                        child: TextButton(
+                          child: Text('会員登録はこちら'),
+                          style: TextButton.styleFrom(
+                            textStyle: TextStyle(fontSize: 13),
+                            primary: Colors.grey,
+                          ),
+                          onPressed: () {
+                            // 画面遷移
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CreateUserView(),
+                              ),
+                            );
+                          },
                         ),
-                        onPressed: () {
-                          // 画面遷移
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CreateUserView(),
-                            ),
-                          );
-                        },
                       ),
 
-                      TextButton(
-                        child: Text('パスワードをお忘れの方はこちら'),
-                        style: TextButton.styleFrom(
-                          textStyle: TextStyle(fontSize: 13),
-                          primary: Colors.grey,
+                      // テキストボタン'パスワードをお忘れの方はこちら'を配置
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child: TextButton(
+                          child: Text('パスワードをお忘れの方はこちら'),
+                          style: TextButton.styleFrom(
+                            textStyle: TextStyle(fontSize: 13),
+                            primary: Colors.grey,
+                          ),
+                          onPressed: () {},
                         ),
-                        onPressed: () {},
                       ),
                     ],
                   ),

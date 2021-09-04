@@ -42,9 +42,11 @@ class TweetView extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
+                    // 画像の追加アイコンボタン、投稿ボタン
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
+                        // 画像の追加アイコンボタン
                         Container(
                           //width: double.infinity,
                           margin:
@@ -55,30 +57,14 @@ class TweetView extends StatelessWidget {
                                 const Icon(Icons.add_photo_alternate_outlined),
                             color: Colors.lightBlue,
                             onPressed: () async {
-                              //print("タップタップ");
                               FocusScope.of(context).unfocus();
                               await model.showImagePicker();
-                              //print("test");
-                              // model.updateURL();
-                              //model.fetchProfile();
-                              /*
-                              Navigator.pushReplacement(
-                                context,
-                                PageRouteBuilder(
-                                  pageBuilder:
-                                      (context, animation1, animation2) =>
-                                          TweetView(),
-                                  transitionDuration: Duration(seconds: 0),
-                                ),
-                              );
-
-                               */
                             },
                           ),
                         ),
+
+                        // 投稿ボタン
                         Container(
-                          //width: double.infinity,
-                          //margin: EdgeInsets.fromLTRB(0, 0, size.width * 0.01, 0),
                           child: TextButton(
                             child: Text('投稿'),
                             style: TextButton.styleFrom(
@@ -86,15 +72,19 @@ class TweetView extends StatelessWidget {
                               primary: Colors.lightBlue,
                             ),
                             onPressed: () {
+                              // ボタンを押した時の処理
+                              // データベースに投稿内容を送信
                               model.addTweet();
+                              // 画面遷移
                               Navigator.of(context).pop();
                             },
                           ),
                         ),
                       ],
                     ),
+
+                    // 投稿内容の入力フォーム
                     Container(
-                      //margin: EdgeInsets.fromLTRB(16.0, 64.0, 16.0, 0),
                       color: Colors.white.withOpacity(0.7),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
@@ -103,9 +93,7 @@ class TweetView extends StatelessWidget {
                             autofocus: true,
                             keyboardType: TextInputType.multiline,
                             maxLines: null,
-                            //controller: _replyTextController,
                             onChanged: (String value) {
-                              //reply = _replyTextController.text;
                               model.text = value;
                             },
                             decoration: InputDecoration(

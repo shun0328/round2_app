@@ -32,8 +32,9 @@ class ProfileView extends StatelessWidget {
         body: Consumer<ProfileModel>(
           builder: (context, model, child) {
             // ローディング画面
-            if (model.profile == null && model.imageURL == '') {
+            if (model.isDownloadCompleted() == false) {
               return Center(
+                // グルグルするやつ
                 child: CircularProgressIndicator(
                   valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
                 ),
@@ -57,7 +58,7 @@ class ProfileView extends StatelessWidget {
                       (size.width * 0.40 - size.height * 0.1992),
                   top: size.height * 0.105,
                   child: Text(
-                    'ID：' + model.id,
+                    'ID：' + model.id!,
                     style: TextStyle(
                       fontSize: size.height * 0.024,
                       color: topColor,
@@ -71,7 +72,7 @@ class ProfileView extends StatelessWidget {
                       (size.width * 0.40 - size.height * 0.1992),
                   top: size.height * 0.17,
                   child: Text(
-                    model.nickName,
+                    model.nickName!,
                     style: TextStyle(
                       fontSize: size.height * 0.043,
                       color: topColor,
@@ -106,7 +107,7 @@ class ProfileView extends StatelessWidget {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: NetworkImage(model.imageURL),
+                        image: NetworkImage(model.imageURL!),
                       ),
                     ),
                   ),
@@ -127,7 +128,7 @@ class ProfileView extends StatelessWidget {
                       showModalBottomSheet(
                         //モーダルの背景の色、透過
                         backgroundColor: Colors.transparent,
-                        //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
+                        //スクロール可能にする
                         isScrollControlled: true,
                         context: context,
                         builder: (BuildContext context) {
@@ -172,7 +173,7 @@ class ProfileView extends StatelessWidget {
                   left: size.width * 0.57,
                   top: size.height * 0.45,
                   child: Text(
-                    model.id,
+                    model.id!,
                     style: TextStyle(
                       fontSize: bottomFontSize,
                       color: bottomColor,
@@ -198,7 +199,7 @@ class ProfileView extends StatelessWidget {
                   left: size.width * 0.57,
                   top: size.height * 0.506,
                   child: Text(
-                    model.nickName,
+                    model.nickName!,
                     style: TextStyle(
                       fontSize: bottomFontSize,
                       color: bottomColor,
@@ -224,7 +225,7 @@ class ProfileView extends StatelessWidget {
                   left: size.width * 0.57,
                   top: size.height * 0.55,
                   child: Text(
-                    model.visitTime.toString() + ' 回',
+                    model.visitTime!.toString() + ' 回',
                     style: TextStyle(
                       fontSize: bottomFontSize,
                       color: bottomColor,

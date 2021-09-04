@@ -5,7 +5,7 @@ Color backGroundColor = Color.fromRGBO(102, 102, 102, 1.0);
 
 class SettingModel extends ChangeNotifier {
   // メンバ変数
-  String sample = "sample";
+  String? sample;
 
   // メソッド
   void sampleMethod() {

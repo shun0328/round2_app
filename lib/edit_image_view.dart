@@ -12,7 +12,7 @@ class EditImageView extends StatelessWidget {
 
     // providerパターンでModelを使用
     return ChangeNotifierProvider<EditImageModel>(
-      create: (_) => EditImageModel()..fetchProfile(),
+      create: (_) => EditImageModel()..getUserInfo(),
       child: Scaffold(
         // 画面の背景色を設定
         backgroundColor: backGroundColor,
@@ -32,11 +32,14 @@ class EditImageView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                // プロフィール画像
                 Container(
                   child: InkWell(
                       hoverColor: Colors.black54,
                       onTap: () async {
+                        // ギャラリーから写真を選ぶ
                         await model.showImagePicker();
+                        // 選んだ写真をデータベースに保存(更新)
                         model.updateURL();
                       },
                       child: Container(
@@ -62,13 +65,14 @@ class EditImageView extends StatelessWidget {
                         ),
                       )),
                 ),
-                // 登録ボタンの配置
+
+                // 保存ボタンの配置(画面遷移ボタン)
                 Container(
                   margin: EdgeInsets.fromLTRB(size.width * 0.2,
                       size.height * 0.1, size.width * 0.2, size.height * 0.1),
                   width: double.infinity,
                   height: size.height * 0.05,
-                  // ログイン登録ボタン
+                  // 保存ボタン
                   child: ElevatedButton(
                     child: Text('保存'),
                     style: ElevatedButton.styleFrom(
@@ -77,7 +81,6 @@ class EditImageView extends StatelessWidget {
                       onPrimary: Colors.white,
                     ),
                     onPressed: () async {
-                      //model.fetchProfile();
                       // 画面遷移
                       Navigator.of(context).pop();
                     },

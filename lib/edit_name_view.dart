@@ -14,7 +14,7 @@ class EditNameView extends StatelessWidget {
 
     // providerパターンでModelを使用
     return ChangeNotifierProvider<EditNameModel>(
-      create: (_) => EditNameModel()..fetchProfile(),
+      create: (_) => EditNameModel()..getDocId(),
       child: Scaffold(
         // 画面の背景色を設定
         backgroundColor: backGroundColor,
@@ -32,6 +32,7 @@ class EditNameView extends StatelessWidget {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                // 新しい名前の入力フォーム
                 Container(
                   margin: EdgeInsets.fromLTRB(size.width * 0.05,
                       size.height * 0.1, size.width * 0.05, 0),
@@ -73,13 +74,13 @@ class EditNameView extends StatelessWidget {
                     onPressed: () async {
                       try {
                         await model.upDateName();
-                        // ユーザ登録が成功したら登録完了の表示＆画面遷移
+                        // 変更完了の表示
                         final snackBar = SnackBar(content: Text("変更完了"));
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         // 画面遷移
                         Navigator.of(context).pop();
                       } catch (e) {
-                        // ログインに失敗した場合->エラーの表示
+                        // 失敗した場合->エラーの表示
                         final snackBar = SnackBar(content: Text(e.toString()));
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       }

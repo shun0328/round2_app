@@ -4,23 +4,36 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+/*
+テーブル[users]
+number  chip
+string  email
+string  id
+string  imageURL
+string  name
+string  nickName
+string  password
+number  point
+number  rating
+number  visitTime
+*/
+
 class CreateUserModel extends ChangeNotifier {
   // 入力したメールアドレス
-  String email = '';
+  String? email;
   // 入力したパスワード
-  String password = '';
+  String? password;
   // 入力した確認用パスワード
-  String password2 = '';
+  String? password2;
   // 入力したお名前
-  String name = '';
+  String? name;
   // 入力したニックネーム
-  String nickName = '';
+  String? nickName;
   // デフォルトアイコン
   String imageURL =
       'https://firebasestorage.googleapis.com/v0/b/round2-fb.appspot.com/o/profile.png?alt=media&token=29684e3b-9544-44b1-948f-2d2d0349f900';
 
-  // ランダムで6桁の文字列を作成する関数(衝突確率 1/308915776)
-  // 戻り値の例： fgdidn, aktbxo
+  // ランダムで8桁の文字列を作成する関数
   idGenerator() {
     int smallLetterStart = 97;
     int smallLetterCount = 26;
@@ -37,16 +50,16 @@ class CreateUserModel extends ChangeNotifier {
   // 入力した情報をデータベースに格納する関数
   Future addUser() async {
     // 不備があったらエラーを返す
-    if (name == '') {
+    if (name == null) {
       throw 'お名前が入力されていません';
     }
-    if (nickName == '') {
+    if (nickName == null) {
       throw 'ニックネームが入力されていません';
     }
-    if (email == '') {
+    if (email == null) {
       throw 'メールアドレスが入力されていません';
     }
-    if (password == '') {
+    if (password == null) {
       throw 'パスワードが入力されていません';
     }
     if (password != password2) {
@@ -56,8 +69,8 @@ class CreateUserModel extends ChangeNotifier {
     // メール/パスワードでユーザー登録
     final FirebaseAuth auth = FirebaseAuth.instance;
     await auth.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
+      email: email!,
+      password: password!,
     );
 
     // usersテーブルにuserを追加
@@ -75,5 +88,23 @@ class CreateUserModel extends ChangeNotifier {
     });
 
     notifyListeners();
+  }
+
+  // エラーメッセージを翻訳する関数
+  String translateError(e) {
+    String errorMessage = e;
+    if (e ==
+        '[firebase_auth/invalid-email] The email address is badly formatted.') {
+      errorMessage = '正しいメールアドレスを入力してください';
+    }
+    if (e ==
+        '[firebase_auth/email-already-in-use] The email address is already in use by another account.') {
+      errorMessage = 'そのメールアドレスは既に使われています';
+    }
+    if (e ==
+        '[firebase_auth/weak-password] Password should be at least 6 characters') {
+      errorMessage = 'パスワードは6文字以上で設定してください';
+    }
+    return errorMessage;
   }
 }

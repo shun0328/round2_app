@@ -1,17 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class TimeLineModel extends ChangeNotifier {
-  final _tweetCollection = FirebaseFirestore.instance
-      .collection('tweets')
-      .orderBy('timeStamp', descending: true);
+/*
+テーブル[tweets]
+string    imageURL
+string    text
+timestamp timeStamp
+string    userID
+string    userUID
+*/
 
-  // トーナメントオブジェクトのリスト
+class TimeLineModel extends ChangeNotifier {
+  // ツイートオブジェクトのリスト
   List<Tweet>? tweets;
+
+  // ユーザ名とプロフィール画像を
+  // 投稿の分だけ取得するため
+  // 取得したら＋１
+  int count = 0;
 
   // FireBaseからトーナメント情報を取得
   void fetchTweet() async {
     // データベースからデータを受け取る
+    final _tweetCollection = FirebaseFirestore.instance
+        .collection('tweets')
+        .orderBy('timeStamp', descending: true);
     final snapshot = await _tweetCollection.get();
     // 受け取った情報からインスタンスを生成
     final List<Tweet> tweets = snapshot.docs.map((DocumentSnapshot document) {
@@ -19,18 +32,15 @@ class TimeLineModel extends ChangeNotifier {
       final String imageURL = data["imageURL"];
       final String text = data['text'];
       final String userUID = data['userUID'];
-      final String userName = data['userName'];
-      final String userImage = data['userImage'];
+      final String userName = '';
+      final String userImage =
+          'https://firebasestorage.googleapis.com/v0/b/round2-fb.appspot.com/o/profile.png?alt=media&token=29684e3b-9544-44b1-948f-2d2d0349f900';
       final String userId = data['userId'];
-
       final String docId = document.id;
-      //print(docId);
-
       return Tweet(imageURL, text, userName, userImage, docId, userUID, userId);
     }).toList();
     // ツイートオブジェクトのリストが完成
     this.tweets = tweets;
-
     // 終わった事をviewに知らせる
     notifyListeners();
   }
@@ -43,23 +53,27 @@ class TimeLineModel extends ChangeNotifier {
     for (var i = 0; i < tweets!.length; i++) {
       if (tweets![i].docId == docId) {
         tweets!.removeAt(i);
+        break;
       }
     }
     notifyListeners();
   }
 
-  Future getName(i) async {
+  // プロフィール画像とユーザ名を取得する関数
+  Future getUserInfo(i) async {
     // usersテーブルの中からログイン中の
     // メールアドレスと一致するuserを抽出
     final _userCollection = FirebaseFirestore.instance
         .collection('users')
-        .where("id", isEqualTo: tweets![i].userId ?? '');
+        .where("id", isEqualTo: tweets![i].userId);
     // データベースからデータを受け取る
     final snapshot = await _userCollection.get();
-    // 受け取った情報からインスタンスを生成
-    tweets![i].userId = snapshot.docs[0]['nickName'];
-    tweets![i].userImage = snapshot.docs[0]['imageURL'];
 
+    // 受け取った情報を格納
+    this.tweets![i].userId = snapshot.docs[0]['nickName'];
+    this.tweets![i].userImage = snapshot.docs[0]['imageURL'];
+
+    this.count += 1;
     // 終わった事をviewに知らせる
     notifyListeners();
   }

@@ -31,13 +31,11 @@ class SettingView extends StatelessWidget {
           builder: (context, model, child) {
             return Column(
               children: <Widget>[
-                // サイズ調整
-                SizedBox(height: size.height * 0.05),
-
+                // ニックネームの変更
                 Container(
                   width: size.width,
                   height: size.height * 0.07,
-                  //color: Colors.white,
+                  margin: EdgeInsets.fromLTRB(0, size.height * 0.04, 0, 0),
                   child: ElevatedButton(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -84,13 +82,11 @@ class SettingView extends StatelessWidget {
                   ),
                 ),
 
-                // サイズ調整
-                SizedBox(height: size.height * 0.001),
-
+                // プロフィール画像の変更
                 Container(
                   width: size.width,
                   height: size.height * 0.07,
-                  //color: Colors.white,
+                  margin: EdgeInsets.fromLTRB(0, size.height * 0.001, 0, 0),
                   child: ElevatedButton(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -137,14 +133,11 @@ class SettingView extends StatelessWidget {
                   ),
                 ),
 
-                // サイズ調整
-                SizedBox(height: size.height * 0.001),
-
                 // 通知設定
                 Container(
                   width: size.width,
                   height: size.height * 0.07,
-                  //color: Colors.white,
+                  margin: EdgeInsets.fromLTRB(0, size.height * 0.001, 0, 0),
                   child: ElevatedButton(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
