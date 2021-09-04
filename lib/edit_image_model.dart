@@ -9,17 +9,15 @@ import 'package:image_picker/image_picker.dart';
 class EditImageModel extends ChangeNotifier {
   // プロフィール画像
   String? imageURL;
-
   // プロフィール画像(変更時に使用)
   late File imageFile;
-
   // ドキュメントID
-  String documentId = '';
-
-  String id = '';
+  String? documentId;
+  // userID
+  String? id;
 
   // データベースからプロフィール情報を受け取る関数
-  void fetchProfile() async {
+  void getUserInfo() async {
     // usersテーブルの中からログイン中の
     // メールアドレスと一致するuserを抽出
     final _userCollection = FirebaseFirestore.instance
@@ -28,10 +26,9 @@ class EditImageModel extends ChangeNotifier {
             isEqualTo: FirebaseAuth.instance.currentUser?.email ?? '');
     // データベースからデータを受け取る
     final snapshot = await _userCollection.get();
-    // 受け取った情報からインスタンスを生成
-    documentId = snapshot.docs[0].id;
-    id = snapshot.docs[0]['id'];
-    imageURL = snapshot.docs[0]['imageURL'];
+    this.documentId = snapshot.docs[0].id;
+    this.id = snapshot.docs[0]['id'];
+    this.imageURL = snapshot.docs[0]['imageURL'];
 
     // 終わった事をviewに知らせる
     notifyListeners();
@@ -50,7 +47,7 @@ class EditImageModel extends ChangeNotifier {
     final imageURL = await _uploadImage();
     await FirebaseFirestore.instance
         .collection('users')
-        .doc(documentId)
+        .doc(this.documentId)
         .update({
       'imageURL': imageURL,
     });
