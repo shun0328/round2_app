@@ -1,6 +1,7 @@
 import 'package:Round2/create_user_model.dart';
 import 'package:Round2/login_view.dart';
 import 'package:Round2/main.dart';
+import 'package:Round2/privacy_policy.dart';
 import 'package:Round2/setting_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -182,7 +183,16 @@ class CreateUserView extends StatelessWidget {
                             textStyle: TextStyle(fontSize: 11),
                             primary: Colors.grey,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            // ボタンを押した時の処理
+                            // 画面遷移
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PrivacyPolicy(),
+                              ),
+                            );
+                          },
                         ),
                       ),
 
