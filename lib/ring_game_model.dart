@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 number  numMember
 string  tableName
 string  time
+boolean visibility
 */
 
 class RingGameModel extends ChangeNotifier {
@@ -26,7 +27,8 @@ class RingGameModel extends ChangeNotifier {
       final String time = data['time'];
       final String ringGameName = data['tableName'];
       final int numMember = data['numMember'];
-      return RingGame(ringGameName, numMember, time);
+      final bool visibility = data['visibility'];
+      return RingGame(ringGameName, numMember, time, visibility);
     }).toList();
 
     // トーナメントオブジェクトのリストが完成
@@ -40,8 +42,9 @@ class RingGameModel extends ChangeNotifier {
 // Ring Game object
 class RingGame {
   // constructor
-  RingGame(this.tableName, this.numMember, this.time);
+  RingGame(this.tableName, this.numMember, this.time, this.visibility);
   String tableName;
   int numMember;
   String time;
+  bool visibility;
 }
