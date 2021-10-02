@@ -33,18 +33,14 @@ class CreateUserModel extends ChangeNotifier {
   String imageURL =
       'https://firebasestorage.googleapis.com/v0/b/round2-fb.appspot.com/o/profile.png?alt=media&token=29684e3b-9544-44b1-948f-2d2d0349f900';
 
-  // ランダムで8桁の文字列を作成する関数
+  // ランダムで8桁のIDを作成する関数
   idGenerator() {
-    int smallLetterStart = 97;
-    int smallLetterCount = 26;
-    var alphabetArray = [];
+    var idArray = [];
     var rand = new math.Random();
     for (var i = 0; i < 8; i++) {
-      int number = rand.nextInt(smallLetterCount);
-      int randomNumber = number + smallLetterStart;
-      alphabetArray.add(String.fromCharCode(randomNumber));
+      idArray.add(rand.nextInt(10));
     }
-    return alphabetArray.join('');
+    return idArray.join('');
   }
 
   // 入力した情報をデータベースに格納する関数
