@@ -43,8 +43,8 @@ class RingGameView extends StatelessWidget {
 
             // RingGameオブジェクトを元にレイアウトを行う
             for (var i = 0; i < model.ringGames!.length; i++) {
-              list.add(Column(
-                children: <Widget>[
+              if (model.ringGames![i].visibility == true) {
+                list.add(
                   Column(
                     children: <Widget>[
                       // テーブル名を設置
@@ -81,8 +81,8 @@ class RingGameView extends StatelessWidget {
                       ),
                     ],
                   ),
-                ],
-              ));
+                );
+              }
             }
 
             // 作成したウィジェットのリストででSingleChildScrollViewを構成
