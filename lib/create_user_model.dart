@@ -10,6 +10,7 @@ number  chip
 string  email
 string  id
 string  imageURL
+timestamp lastVisit
 string  name
 string  nickName
 string  password
@@ -81,6 +82,7 @@ class CreateUserModel extends ChangeNotifier {
       'rating': 0,
       'id': idGenerator(),
       'imageURL': imageURL,
+      'lastVisit': DateTime.now(),
     });
 
     notifyListeners();

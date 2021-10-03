@@ -8,6 +8,7 @@ number  chip
 string  email
 string  id
 string  imageURL
+timestamp lastVisit
 string  name
 string  nickName
 string  password
